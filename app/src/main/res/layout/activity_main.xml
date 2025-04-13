@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/back_ground"
+    >
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -63,6 +65,21 @@
             android:layout_height="@dimen/heart_dimen"
             app:srcCompat="@drawable/heart" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <GridLayout
+        android:id="@+id/main_LAY_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:rowCount="6"
+        android:columnCount="3"
+        android:layout_margin="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
 
 </RelativeLayout>
