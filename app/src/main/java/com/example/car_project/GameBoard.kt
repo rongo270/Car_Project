@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
+import com.example.car_project.R
 
 class GameBoard(
     private val context: Context,
@@ -44,5 +45,14 @@ class GameBoard(
             AppCompatResources.getDrawable(context, playerDrawable)
         )
     }
-
+    fun movePlayer(NumOfCol:Int){
+        val newCol = playerCol + NumOfCol
+        if (newCol in 0 until cols){
+            board[playerRow][playerCol].setImageDrawable(null)//clear the current place
+            playerCol = newCol//update the position
+            board[playerRow][playerCol].setImageDrawable(//put player in the new place
+                AppCompatResources.getDrawable(context, R.drawable.car)
+            )
+        }
+    }
 }
