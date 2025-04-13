@@ -4,4 +4,5 @@
     <dimen name="buttom_space">230dp</dimen>
     <dimen name="heart_dimen">40dp</dimen>
     <dimen name="heart_margin">10dp</dimen>
+    <dimen name="arrow_size">70dp</dimen>
 </resources>

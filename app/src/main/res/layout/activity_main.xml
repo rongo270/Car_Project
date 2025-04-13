@@ -18,24 +18,32 @@
         android:layout_margin="@dimen/default_margin">
 
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/main_BTN_Left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/arrow_size"
+            android:layout_height="@dimen/arrow_size"
             android:layout_weight="1"
-            android:text="@string/left" />
+            android:src="@drawable/left"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/left"
+            />
 
         <View
             android:layout_width="@dimen/buttom_space"
             android:layout_height="0dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/main_BTN_No"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/main_BTN_Right"
+            android:layout_width="@dimen/arrow_size"
+            android:layout_height="@dimen/arrow_size"
             android:layout_weight="1"
-            android:text="@string/right" />
+            android:src="@drawable/right"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/left"
 
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
