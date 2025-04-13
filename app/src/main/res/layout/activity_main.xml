@@ -19,7 +19,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/main_BTN_Yes"
+            android:id="@+id/main_BTN_Left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -74,12 +74,6 @@
         android:rowCount="6"
         android:columnCount="3"
         android:layout_margin="16dp" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_background" />
 
 
 </RelativeLayout>
