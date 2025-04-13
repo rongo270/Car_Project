@@ -1,4 +1,5 @@
 package com.example.car_project.board
+
 import android.content.Context
 import android.view.View
 import android.widget.GridLayout
@@ -40,7 +41,6 @@ class GameBoard(
             }
         }
 
-        // הוספת תמונת שחקן מה-vector
         board[playerRow][playerCol].setImageDrawable(
             AppCompatResources.getDrawable(context, playerDrawable)
         )
