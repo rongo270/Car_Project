@@ -10,8 +10,9 @@ import com.example.car_project.board.GameBoard
 import com.example.car_project.logic.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
-import android.os.Handler
-import android.os.Looper
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
@@ -71,26 +72,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startGameLoop() {
-        val handler = Handler(Looper.getMainLooper())
-        var tick = 0
-
-        val runnable = object : Runnable {
-            override fun run() {
+        lifecycleScope.launch {
+            var tick = 0
+            while (true) {
                 tick++
 
                 gameBoard.moveStones(gameManager) {
                     gameManager.checkIfHit(true)
+                    gameManager.updateHearts(main_IMG_hearts)
+                    gameBoard.getPlayer().fade()
                 }
 
                 if (tick % 2 == 0) {
                     gameBoard.spawnStone()
                 }
 
-                handler.postDelayed(this, 1000)
+                delay(1000L)
             }
         }
-
-        handler.post(runnable)
     }
+
 
 }

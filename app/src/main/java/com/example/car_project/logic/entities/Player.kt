@@ -33,6 +33,15 @@ class Player {
             AppCompatResources.getDrawable(context, R.drawable.car)
         )
     }
+    fun fade() {
+        getCell().animate()
+            .alpha(0.3f)
+            .setDuration(300)
+            .withEndAction {
+                getCell().animate().alpha(1f).setDuration(300).start()
+            }.start()
+    }
+
 
     private fun clear() {
         board[row][col].setImageDrawable(null)
