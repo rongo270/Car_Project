@@ -27,14 +27,16 @@ class Player {
             // Check if theres a stone in the new location
             val hitStone = stones.any { it.row == row && it.col == newCol }
 
+            clear()//clear the player
+            col = newCol
+            draw()//draw the player in the now col
+
             if (hitStone) { //if hit stone return to manager the hit was made
                 gameManager.checkIfHit(true)
                 onHit()
             }
 
-            clear()//clear the player
-            col = newCol
-            draw()//draw the player in the now col
+
         }
     }
 
@@ -67,4 +69,5 @@ class Player {
     fun getRow() = row
     fun getCol() = col
     fun getCell(): ImageView = board[row][col]
+
 }

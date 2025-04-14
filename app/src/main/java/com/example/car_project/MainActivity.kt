@@ -28,12 +28,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var main_IMG_hearts: Array<AppCompatImageView>
 
+    private lateinit var player : Player
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         enableEdgeToEdge()
 
-        val player = Player()//create player
+        player = Player()//create player
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
         gameBoard = GameBoard(this, boardLayout)//start board
         gameBoard.initBoard(player)//build board
@@ -57,16 +59,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         main_BTN_Right.setOnClickListener {
-            gameBoard.movePlayer(1, gameManager) {
+            gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
-                gameBoard.getPlayer().fade()
+                player.fade()
             }
         }
 
         main_BTN_Left.setOnClickListener {
-            gameBoard.movePlayer(-1, gameManager) {
+            gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
-                gameBoard.getPlayer().fade()
+                player.fade()
             }
         }
     }
@@ -81,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                     player = gameBoard.getPlayer(), gameManager = gameManager) {//move stones
                     gameManager.checkIfHit(true)//if hit lose heart and fade
                     gameManager.updateHearts(main_IMG_hearts)
-                    gameBoard.getPlayer().fade()
+                    player.fade()
                 }
 
                 if (tick % 2 == 0) {//every 2 clock time

@@ -45,9 +45,7 @@ class GameBoard(
         player.init(board, context)
     }
 
-    fun movePlayer(deltaCol: Int, gameManager: GameManager, onHit: () -> Unit) {
-        player.move(deltaCol, StoneManager.getStones(), gameManager, onHit)
-    }
+
 
     fun getPlayer(): Player = player
     fun getBoard(): Array<Array<ImageView>> = board
