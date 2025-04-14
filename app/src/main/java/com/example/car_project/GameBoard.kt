@@ -6,6 +6,7 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
+import com.example.car_project.logic.entities.Player
 
 class GameBoard(
     private val context: Context,
@@ -17,42 +18,41 @@ class GameBoard(
         Array(cols) { ImageView(context) }
     }
 
-    private var playerRow = rows - 1
-    private var playerCol = 1
+    private lateinit var player: Player
 
-    fun initBoard(playerDrawable: Int) {
+
+    fun initBoard(playerDrawable: Player) {
+        this.player = player
         gridLayout.removeAllViews()
         gridLayout.rowCount = rows
         gridLayout.columnCount = cols
 
-        for (row in 0 until rows) {
-            for (col in 0 until cols) {
-                val imageView = ImageView(context).apply {
-                    layoutParams = GridLayout.LayoutParams().apply {
-                        width = 100
-                        height = 100
-                        setMargins(8, 8, 8, 8)
+        fun initBoard(player: Player) {
+            this.player = player
+            gridLayout.removeAllViews()
+            gridLayout.rowCount = rows
+            gridLayout.columnCount = cols
+
+            for (row in 0 until rows) {
+                for (col in 0 until cols) {
+                    val imageView = ImageView(context).apply {
+                        layoutParams = GridLayout.LayoutParams().apply {
+                            width = 100
+                            height = 100
+                            setMargins(8, 8, 8, 8)
+                        }
+                        id = View.generateViewId()
                     }
-                    id = View.generateViewId()
+
+                    board[row][col] = imageView
+                    gridLayout.addView(imageView)
                 }
-
-                board[row][col] = imageView
-                gridLayout.addView(imageView)
             }
-        }
 
-        board[playerRow][playerCol].setImageDrawable(
-            AppCompatResources.getDrawable(context, playerDrawable)
-        )
-    }
-    fun movePlayer(NumOfCol:Int){
-        val newCol = playerCol + NumOfCol
-        if (newCol in 0 until cols){
-            board[playerRow][playerCol].setImageDrawable(null)//clear the current place
-            playerCol = newCol//update the position
-            board[playerRow][playerCol].setImageDrawable(//put player in the new place
-                AppCompatResources.getDrawable(context, R.drawable.car)
-            )
+            player.init(board, context)// let the player place himself
         }
+    }
+    fun movePlayer(deltaCol: Int) {
+        player.move(deltaCol)
     }
 }
