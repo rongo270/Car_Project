@@ -26,7 +26,7 @@ class Stone(var row: Int, var col: Int) {
     }
 
     fun update(board: Array<Array<ImageView>>, context: Context, player: Player,
-        gameManager: GameManager, onHit: () -> Unit): Boolean {
+               gameManager: GameManager, onHit: () -> Unit): Boolean {
         return if (gameManager.didCollide(this, player)) {//check if collide
             clear(board)//clear img from board
             onHit()

@@ -17,7 +17,7 @@ object StoneManager {
     }
 
     fun moveAll(board: Array<Array<ImageView>>, context: Context, player: Player,
-        gameManager: GameManager, onHit: () -> Unit) {
+                gameManager: GameManager, onHit: () -> Unit) {
         val iterator = stones.iterator()
         while (iterator.hasNext()) {//goes over all array
             val stone = iterator.next()
