@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
-import com.example.car_project.logic.GameManager
+import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.entities.Stone
 
 class GameBoard(
-    private val context: Context,
+    private val context: Context,//get the xml context
     private val gridLayout: GridLayout,
-    private val rows: Int = 6,
+    private val rows: Int = 6,//rows and cols the that later i can change in the program (not const)
     private val cols: Int = 3
 ) {
     private val board: Array<Array<ImageView>> = Array(rows) {
@@ -23,14 +23,14 @@ class GameBoard(
 
     fun initBoard(player: Player) {
         this.player = player
-        gridLayout.removeAllViews()
+        gridLayout.removeAllViews()//reset board
         gridLayout.rowCount = rows
         gridLayout.columnCount = cols
 
         for (row in 0 until rows) {
             for (col in 0 until cols) {
                 val imageView = ImageView(context).apply {
-                    layoutParams = GridLayout.LayoutParams().apply {
+                    layoutParams = GridLayout.LayoutParams().apply {//create table
                         width = 100
                         height = 100
                         setMargins(8, 8, 8, 8)
@@ -42,7 +42,7 @@ class GameBoard(
             }
         }
 
-        player.init(board, context)
+        player.init(board, context)//create a player
     }
 
     fun movePlayer(deltaCol: Int) {

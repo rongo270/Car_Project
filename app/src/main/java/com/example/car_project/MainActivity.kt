@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.board.GameBoard
-import com.example.car_project.logic.GameManager
+import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
 import androidx.lifecycle.lifecycleScope
@@ -65,9 +65,15 @@ class MainActivity : AppCompatActivity() {
         //main_LBL_score.text = gameManager.score.toString()
         main_BTN_Right.setOnClickListener {
             gameBoard.movePlayer(1)
+            gameManager.checkIfHit(true)
+            gameManager.updateHearts(main_IMG_hearts)
+            gameBoard.getPlayer().fade()
         }
         main_BTN_Left.setOnClickListener {
             gameBoard.movePlayer(-1)
+            gameManager.checkIfHit(true)
+            gameManager.updateHearts(main_IMG_hearts)
+            gameBoard.getPlayer().fade()
         }
     }
 

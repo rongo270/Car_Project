@@ -6,7 +6,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
 
 class Player {
-    private var row: Int = 0
+    private var row: Int = 0//get rows and cols of table
     private var col: Int = 0
     private lateinit var board: Array<Array<ImageView>>
     private lateinit var context: Context
@@ -14,9 +14,9 @@ class Player {
     fun init(board: Array<Array<ImageView>>, context: Context) {
         this.board = board
         this.context = context
-        row = board.size - 1
+        row = board.size - 1//put the player in the middle and bottom of table (assume its odd number of cols
         col = board[0].size / 2
-        draw()
+        draw()//
     }
 
     fun move(deltaCol: Int) {
