@@ -7,11 +7,12 @@ import android.widget.ImageView
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.entities.Stone
+import com.example.car_project.logic.managers.StoneManager
 
 class GameBoard(
-    private val context: Context,//get the xml context
+    private val context: Context,
     private val gridLayout: GridLayout,
-    private val rows: Int = 6,//rows and cols the that later i can change in the program (not const)
+    private val rows: Int = 6,
     private val cols: Int = 3
 ) {
     private val board: Array<Array<ImageView>> = Array(rows) {
@@ -19,18 +20,17 @@ class GameBoard(
     }
 
     private lateinit var player: Player
-    private val stones = mutableListOf<Stone>()
 
     fun initBoard(player: Player) {
         this.player = player
-        gridLayout.removeAllViews()//reset board
+        gridLayout.removeAllViews()
         gridLayout.rowCount = rows
         gridLayout.columnCount = cols
 
         for (row in 0 until rows) {
             for (col in 0 until cols) {
                 val imageView = ImageView(context).apply {
-                    layoutParams = GridLayout.LayoutParams().apply {//create table
+                    layoutParams = GridLayout.LayoutParams().apply {
                         width = 100
                         height = 100
                         setMargins(8, 8, 8, 8)
@@ -42,34 +42,14 @@ class GameBoard(
             }
         }
 
-        player.init(board, context)//create a player
+        player.init(board, context)
     }
 
-    fun movePlayer(deltaCol: Int) {
-        player.move(deltaCol)
-    }
-
-    fun spawnStone() {
-        val col = (0 until cols).random()
-        val stone = Stone(0, col)
-        stones.add(stone)
-        stone.draw(board, context)
-    }
-
-    fun moveStones(gameManager: GameManager, onHit: () -> Unit) {
-        val iterator = stones.iterator()
-        while (iterator.hasNext()) {
-            val stone = iterator.next()
-
-            if (gameManager.didCollide(stone, player)) {
-                onHit()
-                stone.clear(board)
-                iterator.remove()
-            } else if (!stone.moveDown(board, context)) {
-                iterator.remove()
-            }
-        }
+    fun movePlayer(deltaCol: Int, gameManager: GameManager, onHit: () -> Unit) {
+        player.move(deltaCol, StoneManager.getStones(), gameManager, onHit)
     }
 
     fun getPlayer(): Player = player
+    fun getBoard(): Array<Array<ImageView>> = board
+    fun getCols(): Int = cols
 }

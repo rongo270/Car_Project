@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
+import com.example.car_project.logic.managers.GameManager
 
 class Player {
     private var row: Int = 0//get rows and cols of table
@@ -19,12 +20,21 @@ class Player {
         draw()//
     }
 
-    fun move(deltaCol: Int) {
+    fun move(deltaCol: Int, stones: List<Stone>, gameManager: GameManager, onHit: () -> Unit) {
         val newCol = col + deltaCol
-        if (newCol in 0 until board[0].size) {
-            clear()
+        if (newCol in 0 until board[0].size) {//check if not out of bounds
+
+            // Check if theres a stone in the new location
+            val hitStone = stones.any { it.row == row && it.col == newCol }
+
+            if (hitStone) { //if hit stone return to manager the hit was made
+                gameManager.checkIfHit(true)
+                onHit()
+            }
+
+            clear()//clear the player
             col = newCol
-            draw()
+            draw()//draw the player in the now col
         }
     }
 
@@ -33,7 +43,7 @@ class Player {
             AppCompatResources.getDrawable(context, R.drawable.car)
         )
     }
-    fun fade() {
+    fun fade() {//player fade
         getCell().animate()
             .alpha(0.3f)
             .setDuration(300)
