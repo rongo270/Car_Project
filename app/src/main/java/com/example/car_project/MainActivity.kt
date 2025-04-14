@@ -61,14 +61,12 @@ class MainActivity : AppCompatActivity() {
         main_BTN_Right.setOnClickListener {
             gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
-                player.fade()
             }
         }
 
         main_BTN_Left.setOnClickListener {
             gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
-                player.fade()
             }
         }
     }
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 tick++
 
                 StoneManager.moveAll(board = gameBoard.getBoard(), context = this@MainActivity,
-                    player = gameBoard.getPlayer(), gameManager = gameManager) {//move stones
+                    player, gameManager = gameManager) {//move stones
                     gameManager.checkIfHit(true)//if hit lose heart and fade
                     gameManager.updateHearts(main_IMG_hearts)
                     player.fade()
@@ -90,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     StoneManager.spawn(board = gameBoard.getBoard(), context = this@MainActivity,
                         cols = gameBoard.getCols())//spawn stone
                 }
-
+                player.draw()//3.5 hours to fix some bag i had!
                 delay(1000L)//w8 1 sec
             }
         }

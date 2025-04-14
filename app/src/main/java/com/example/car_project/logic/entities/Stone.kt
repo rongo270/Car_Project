@@ -8,6 +8,7 @@ import com.example.car_project.logic.managers.GameManager
 
 class Stone(var row: Int, var col: Int) {
 
+
     fun draw(board: Array<Array<ImageView>>, context: Context) {//draw stone
         board[row][col].setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.stone)

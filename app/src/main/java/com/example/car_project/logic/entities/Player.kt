@@ -34,13 +34,13 @@ class Player {
             if (hitStone) { //if hit stone return to manager the hit was made
                 gameManager.checkIfHit(true)
                 onHit()
+                fade()
             }
-
 
         }
     }
 
-    private fun draw() {
+     fun draw() {
         val cell = board[row][col]
         cell.setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.car)
@@ -65,6 +65,7 @@ class Player {
     private fun clear() {
         board[row][col].setImageDrawable(null)
     }
+
 
     fun getRow() = row
     fun getCol() = col
