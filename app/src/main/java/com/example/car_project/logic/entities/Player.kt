@@ -39,18 +39,25 @@ class Player {
     }
 
     private fun draw() {
-        board[row][col].setImageDrawable(
+        val cell = board[row][col]
+        cell.setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.car)
         )
+        cell.alpha = 1f
     }
-    fun fade() {//player fade
+
+    fun fade() {
         getCell().animate()
             .alpha(0.3f)
-            .setDuration(300)
+            .setDuration(200)
             .withEndAction {
-                getCell().animate().alpha(1f).setDuration(300).start()
+                getCell().animate()
+                    .alpha(1f)
+                    .setDuration(200)
+                    .start()
             }.start()
     }
+
 
 
     private fun clear() {
