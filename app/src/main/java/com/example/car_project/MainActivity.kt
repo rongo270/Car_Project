@@ -10,6 +10,8 @@ import com.example.car_project.board.GameBoard
 import com.example.car_project.logic.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
+import android.os.Handler
+import android.os.Looper
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         findViews()
         gameManager = GameManager(main_IMG_hearts.size)
         initViews()
+        startGameLoop()
     }
 
     private fun findViews(){
@@ -66,4 +69,28 @@ class MainActivity : AppCompatActivity() {
             gameBoard.movePlayer(-1)
         }
     }
+
+    private fun startGameLoop() {
+        val handler = Handler(Looper.getMainLooper())
+        var tick = 0
+
+        val runnable = object : Runnable {
+            override fun run() {
+                tick++
+
+                gameBoard.moveStones(gameManager) {
+                    gameManager.checkIfHit(true)
+                }
+
+                if (tick % 2 == 0) {
+                    gameBoard.spawnStone()
+                }
+
+                handler.postDelayed(this, 1000)
+            }
+        }
+
+        handler.post(runnable)
+    }
+
 }

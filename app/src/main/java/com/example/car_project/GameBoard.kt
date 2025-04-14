@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
+import com.example.car_project.logic.GameManager
 import com.example.car_project.logic.entities.Player
+import com.example.car_project.logic.entities.Stone
 
 class GameBoard(
     private val context: Context,
@@ -17,7 +19,7 @@ class GameBoard(
     }
 
     private lateinit var player: Player
-
+    private val stones = mutableListOf<Stone>()
 
     fun initBoard(player: Player) {
         this.player = player
@@ -35,16 +37,39 @@ class GameBoard(
                     }
                     id = View.generateViewId()
                 }
-
                 board[row][col] = imageView
                 gridLayout.addView(imageView)
             }
         }
 
-        player.init(board, context) // let the player place himself
+        player.init(board, context)
     }
 
     fun movePlayer(deltaCol: Int) {
         player.move(deltaCol)
     }
+
+    fun spawnStone() {
+        val col = (0 until cols).random()
+        val stone = Stone(0, col)
+        stones.add(stone)
+        stone.draw(board, context)
+    }
+
+    fun moveStones(gameManager: GameManager, onHit: () -> Unit) {
+        val iterator = stones.iterator()
+        while (iterator.hasNext()) {
+            val stone = iterator.next()
+
+            if (gameManager.didCollide(stone, player)) {
+                onHit()
+                stone.clear(board)
+                iterator.remove()
+            } else if (!stone.moveDown(board, context)) {
+                iterator.remove()
+            }
+        }
+    }
+
+    fun getPlayer(): Player = player
 }
