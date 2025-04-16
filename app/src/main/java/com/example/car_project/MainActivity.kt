@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.car_project.logic.managers.StoneManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import android.media.MediaPlayer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var player : Player
 
+    private lateinit var mediaPlayer: MediaPlayer
+
+    private lateinit var effectPlayer: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,7 +48,14 @@ class MainActivity : AppCompatActivity() {
         findViews()
         gameManager = GameManager(main_IMG_hearts.size)//give hearts
         initViews()
+        startMusic()
         startGameLoop()//start game
+    }
+
+    private fun startMusic(){
+        mediaPlayer = MediaPlayer.create(this, R.raw.minecraft_theme)
+        mediaPlayer.isLooping = true // optional: loop music
+        mediaPlayer.start()
     }
 
     private fun findViews() {

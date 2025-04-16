@@ -1,6 +1,7 @@
 package com.example.car_project.logic.entities
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
@@ -22,6 +23,12 @@ class Player {
         row = board.size - 1//put the player in the middle and bottom of table (assume its odd number of cols
         col = board[0].size / 2
         draw()//
+    }
+
+    fun add_effectPlayer(effectPlayer: MediaPlayer){
+        //effectPlayer = MediaPlayer.create(context, R.raw.ouch_sound)
+        effectPlayer.setOnCompletionListener { it.release() }
+        effectPlayer.start()
     }
 
     fun move(deltaCol: Int, stones: List<Stone>, gameManager: GameManager, onHit: () -> Unit) {

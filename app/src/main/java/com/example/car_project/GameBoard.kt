@@ -29,8 +29,8 @@ class GameBoard(
             for (col in 0 until cols) {
                 val imageView = ImageView(context).apply {
                     layoutParams = GridLayout.LayoutParams().apply {
-                        width = 100
-                        height = 100
+                        width = Constants.BOARD_WIDTH
+                        height = Constants.BOARD_HEIGHT
                         setMargins(8, 8, 8, 8)
                     }
                     id = View.generateViewId()
