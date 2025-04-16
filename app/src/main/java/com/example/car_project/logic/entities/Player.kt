@@ -9,6 +9,7 @@ import com.example.car_project.logic.managers.GameManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.Toast
+import com.example.car_project.sound.Sound_Media
 
 
 class Player {
@@ -16,6 +17,9 @@ class Player {
     private var col: Int = 0
     private lateinit var board: Array<Array<ImageView>>
     private lateinit var context: Context
+    private lateinit var sound_Media: Sound_Media
+
+
 
     fun init(board: Array<Array<ImageView>>, context: Context) {
         this.board = board
@@ -25,11 +29,6 @@ class Player {
         draw()//
     }
 
-    fun add_effectPlayer(effectPlayer: MediaPlayer){
-        //effectPlayer = MediaPlayer.create(context, R.raw.ouch_sound)
-        effectPlayer.setOnCompletionListener { it.release() }
-        effectPlayer.start()
-    }
 
     fun move(deltaCol: Int, stones: List<Stone>, gameManager: GameManager, onHit: () -> Unit) {
         val newCol = col + deltaCol
@@ -56,6 +55,7 @@ class Player {
         cell.setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.steve)
         )
+         //sound_Media.walk_Media(context)
         cell.alpha = 1f
     }
 
@@ -65,6 +65,7 @@ class Player {
             VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
         )
         Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()
+        sound_Media.hit_Media(context)
 
         getCell().animate()
             .alpha(0.3f)
@@ -88,5 +89,8 @@ class Player {
     fun getRow() = row
     fun getCol() = col
     fun getCell(): ImageView = board[row][col]
+
+
+
 
 }

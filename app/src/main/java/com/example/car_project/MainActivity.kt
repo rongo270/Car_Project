@@ -15,6 +15,8 @@ import com.example.car_project.logic.managers.StoneManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import android.media.MediaPlayer
+import com.example.car_project.sound.Sound_Media
+import com.example.car_project.utilities.Constants
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
@@ -31,9 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var player : Player
 
-    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var sound_Media: Sound_Media
 
-    private lateinit var effectPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +49,10 @@ class MainActivity : AppCompatActivity() {
         findViews()
         gameManager = GameManager(main_IMG_hearts.size)//give hearts
         initViews()
-        startMusic()
+        //sound_Media.startMusic(this)
         startGameLoop()//start game
     }
 
-    private fun startMusic(){
-        mediaPlayer = MediaPlayer.create(this, R.raw.minecraft_theme)
-        mediaPlayer.isLooping = true // optional: loop music
-        mediaPlayer.start()
-    }
 
     private fun findViews() {
         main_BTN_Left = findViewById(R.id.main_BTN_Left)
@@ -101,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                         cols = gameBoard.getCols())//spawn stone
                 }
                 player.draw()//3.5 hours to fix some bag i had!
-                delay(1000L)//w8 1 sec
+                delay(Constants.SPEED)//w8 1 sec
             }
         }
     }
