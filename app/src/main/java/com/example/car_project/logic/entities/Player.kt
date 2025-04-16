@@ -5,6 +5,10 @@ import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
 import com.example.car_project.logic.managers.GameManager
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.widget.Toast
+
 
 class Player {
     private var row: Int = 0//get rows and cols of table
@@ -43,12 +47,18 @@ class Player {
      fun draw() {
         val cell = board[row][col]
         cell.setImageDrawable(
-            AppCompatResources.getDrawable(context, R.drawable.car)
+            AppCompatResources.getDrawable(context, R.drawable.steve)
         )
         cell.alpha = 1f
     }
 
     fun fade() {
+        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(
+            VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
+        )
+        Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()
+
         getCell().animate()
             .alpha(0.3f)
             .setDuration(200)
@@ -59,6 +69,7 @@ class Player {
                     .start()
             }.start()
     }
+
 
 
 

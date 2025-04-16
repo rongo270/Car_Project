@@ -2,18 +2,16 @@ package com.example.car_project.board
 
 import android.content.Context
 import android.view.View
+import com.example.car_project.utilities.Constants
 import android.widget.GridLayout
 import android.widget.ImageView
-import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
-import com.example.car_project.logic.entities.Stone
-import com.example.car_project.logic.managers.StoneManager
 
 class GameBoard(
     private val context: Context,
     private val gridLayout: GridLayout,
-    private val rows: Int = 6,
-    private val cols: Int = 3
+    private val rows: Int = Constants.ROWS,
+    private val cols: Int = Constants.COLS
 ) {
     private val board: Array<Array<ImageView>> = Array(rows) {
         Array(cols) { ImageView(context) }

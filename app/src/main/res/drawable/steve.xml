@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- שיער -->
+    <path android:fillColor="#4E342E" android:pathData="M20,0h24v6h-24z"/>
+    <path android:fillColor="#4E342E" android:pathData="M20,0h4v16h-4z"/>
+    <path android:fillColor="#4E342E" android:pathData="M40,0h4v16h-4z"/>
+
+    <!-- ראש -->
+    <path android:fillColor="#ba9877" android:pathData="M20,0h24v16h-24z"/>
+
+    <!-- עיניים -->
+    <path android:fillColor="#FFFFFF" android:pathData="M24,4h4v4h-4z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M36,4h4v4h-4z"/>
+    <path android:fillColor="#6A5ACD" android:pathData="M25,5h2v2h-2z"/>
+    <path android:fillColor="#6A5ACD" android:pathData="M37,5h2v2h-2z"/>
+
+    <!-- פה -->
+    <path android:fillColor="#3E2723" android:pathData="M30,11h4v2h-4z"/>
+
+    <!-- זקן -->
+    <path android:fillColor="#5D4037" android:pathData="M24,12h16v4h-16z"/>
+
+    <!-- גוף -->
+    <path android:fillColor="#00CED1" android:pathData="M16,16h32v24h-32z"/>
+
+    <!-- זרועות -->
+    <path android:fillColor="#ba9877" android:pathData="M0,16h16v24h-16z"/>
+    <path android:fillColor="#ba9877" android:pathData="M48,16h16v24h-16z"/>
+
+    <!-- רגליים -->
+    <path android:fillColor="#0000CD" android:pathData="M16,40h16v24h-16z"/>
+    <path android:fillColor="#0000CD" android:pathData="M32,40h16v24h-16z"/>
+
+    <!-- נעליים -->
+    <path android:fillColor="#808080" android:pathData="M16,60h16v4h-16z"/>
+    <path android:fillColor="#808080" android:pathData="M32,60h16v4h-16z"/>
+</vector>

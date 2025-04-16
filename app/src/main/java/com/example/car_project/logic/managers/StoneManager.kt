@@ -13,7 +13,7 @@ object StoneManager {
         val col = (0 until cols).random()
         val stone = Stone(0, col)
         stones.add(stone)
-        stone.draw(board, context)
+        stone.drawStone(board, context)
     }
 
     fun moveAll(board: Array<Array<ImageView>>, context: Context, player: Player,

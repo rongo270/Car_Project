@@ -9,7 +9,7 @@ import com.example.car_project.logic.managers.GameManager
 class Stone(var row: Int, var col: Int) {
 
 
-    fun draw(board: Array<Array<ImageView>>, context: Context) {//draw stone
+    fun drawStone(board: Array<Array<ImageView>>, context: Context) {//draw stone
         board[row][col].setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.stone)
         )
@@ -19,7 +19,7 @@ class Stone(var row: Int, var col: Int) {
         clear(board)//clear image
         row++
         return if (row < board.size) {
-            draw(board, context)//draw image
+            drawStone(board, context)//draw image
             true
         } else {
             false // reached bottom
