@@ -2,7 +2,6 @@ package com.example.car_project.logic.managers
 
 import android.content.Context
 import android.widget.ImageView
-import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.entities.Stone
 

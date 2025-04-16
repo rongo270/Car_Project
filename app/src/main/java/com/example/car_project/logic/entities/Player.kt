@@ -16,14 +16,14 @@ class Player {
     private var col: Int = 0
     private lateinit var board: Array<Array<ImageView>>
     private lateinit var context: Context
-    private lateinit var SoundEffect: SoundEffectManager
+    private lateinit var soundEffect: SoundEffectManager
 
 
 
     fun init(board: Array<Array<ImageView>>, context: Context) {
         this.board = board
         this.context = context
-        SoundEffect = SoundEffectManager()
+        soundEffect = SoundEffectManager()
         row = board.size - 1//put the player in the middle and bottom of table (assume its odd number of cols
         col = board[0].size / 2
         draw()//
@@ -65,7 +65,7 @@ class Player {
             VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
         )
         Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()
-        SoundEffect.hit_Media(context)
+        soundEffect.hitMedia(context)
 
         getCell().animate()
             .alpha(0.3f)
@@ -88,7 +88,7 @@ class Player {
 
     fun getRow() = row
     fun getCol() = col
-    fun getCell(): ImageView = board[row][col]
+    private fun getCell(): ImageView = board[row][col]
 
 
 }

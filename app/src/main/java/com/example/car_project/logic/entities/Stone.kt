@@ -15,7 +15,7 @@ class Stone(var row: Int, var col: Int) {
         )
     }
 
-    fun moveDown(board: Array<Array<ImageView>>, context: Context): Boolean {//move stone down
+    private fun moveDown(board: Array<Array<ImageView>>, context: Context): Boolean {//move stone down
         clear(board)//clear image
         row++
         return if (row < board.size) {
@@ -37,7 +37,7 @@ class Stone(var row: Int, var col: Int) {
         }
     }
 
-    fun clear(board: Array<Array<ImageView>>) {
+    private fun clear(board: Array<Array<ImageView>>) {
         board[row][col].setImageDrawable(null)
     }
 

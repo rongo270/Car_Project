@@ -6,7 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
-import com.example.car_project.board.GameBoard
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var musicManager: MusicManager
 
-    private lateinit var SoundEffect: SoundEffectManager
+    private lateinit var soundEffect: SoundEffectManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
         musicManager = MusicManager()
-        SoundEffect = SoundEffectManager()
+        soundEffect = SoundEffectManager()
         musicManager.startMusic(this)
 
 
@@ -77,14 +76,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         main_BTN_Right.setOnClickListener {
-            SoundEffect.walk_Media(this)
+            soundEffect.walkMedia(this)
             gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
             }
         }
 
         main_BTN_Left.setOnClickListener {
-            SoundEffect.walk_Media(this)
+            soundEffect.walkMedia(this)
             gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
             }

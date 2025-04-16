@@ -1,4 +1,4 @@
-package com.example.car_project.board
+package com.example.car_project
 
 import android.content.Context
 import android.view.View
