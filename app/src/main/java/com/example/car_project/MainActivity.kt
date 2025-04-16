@@ -14,8 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.car_project.logic.managers.StoneManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import android.media.MediaPlayer
-import com.example.car_project.sound.Sound_Media
+import com.example.car_project.sound.MusicManager
+import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.utilities.Constants
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var player : Player
 
-    private lateinit var sound_Media: Sound_Media
+    private lateinit var musicManager: MusicManager
+
+    private lateinit var SoundEffect: SoundEffectManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +44,22 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         player = Player()//create player
+
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
         gameBoard = GameBoard(this, boardLayout)//start board
         gameBoard.initBoard(player)//build board
 
         findViews()
+
         gameManager = GameManager(main_IMG_hearts.size)//give hearts
+
         initViews()
-        //sound_Media.startMusic(this)
+
+        musicManager = MusicManager()
+        SoundEffect = SoundEffectManager()
+        musicManager.startMusic(this)
+
+
         startGameLoop()//start game
     }
 
@@ -67,17 +77,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         main_BTN_Right.setOnClickListener {
+            SoundEffect.walk_Media(this)
             gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
             }
         }
 
         main_BTN_Left.setOnClickListener {
+            SoundEffect.walk_Media(this)
             gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
                 gameManager.updateHearts(main_IMG_hearts)//if collide
             }
         }
     }
+
 
     private fun startGameLoop() {
         lifecycleScope.launch {
