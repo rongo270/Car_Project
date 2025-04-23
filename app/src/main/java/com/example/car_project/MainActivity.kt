@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var gameManager: GameManager
 
-    private lateinit var main_BTN_Left: AppCompatImageButton
+    private lateinit var mainLeft: AppCompatImageButton
 
-    private lateinit var main_BTN_Right: AppCompatImageButton
+    private lateinit var mainRight: AppCompatImageButton
 
-    private lateinit var main_LBL_score: MaterialTextView
+    private lateinit var mainScore: MaterialTextView
 
-    private lateinit var main_IMG_hearts: Array<AppCompatImageView>
+    private lateinit var mainHearts: Array<AppCompatImageView>
 
     private lateinit var player : Player
 
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         findViews()
 
-        gameManager = GameManager(main_IMG_hearts.size)//give hearts
+        gameManager = GameManager(mainHearts.size)//give hearts
 
         initViews()
 
@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun findViews() {
-        main_BTN_Left = findViewById(R.id.main_BTN_Left)
-        main_BTN_Right = findViewById(R.id.main_BTN_Right)
-        main_LBL_score = findViewById(R.id.main_LBL_score)
-        main_IMG_hearts = arrayOf(
+        mainLeft = findViewById(R.id.main_BTN_Left)
+        mainRight = findViewById(R.id.main_BTN_Right)
+        mainScore = findViewById(R.id.main_LBL_score)
+        mainHearts = arrayOf(
             findViewById(R.id.main_IMG_heart1),
             findViewById(R.id.main_IMG_heart2),
             findViewById(R.id.main_IMG_heart3)
@@ -75,17 +75,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        main_BTN_Right.setOnClickListener {
+        mainRight.setOnClickListener {
             soundEffect.walkMedia(this)
             gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
-                gameManager.updateHearts(main_IMG_hearts)//if collide
+                gameManager.updateHearts(mainHearts)//if collide
             }
         }
 
-        main_BTN_Left.setOnClickListener {
+        mainLeft.setOnClickListener {
             soundEffect.walkMedia(this)
             gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
-                gameManager.updateHearts(main_IMG_hearts)//if collide
+                gameManager.updateHearts(mainHearts)//if collide
             }
         }
     }
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 StoneManager.moveAll(board = gameBoard.getBoard(), context = this@MainActivity,
                     player, gameManager = gameManager) {//move stones
                     gameManager.checkIfHit(true)//if hit lose heart and fade
-                    gameManager.updateHearts(main_IMG_hearts)
+                    gameManager.updateHearts(mainHearts)
                     player.fade()
                 }
 
