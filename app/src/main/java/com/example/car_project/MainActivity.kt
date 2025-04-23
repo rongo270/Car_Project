@@ -96,6 +96,10 @@ class MainActivity : AppCompatActivity() {
                 gameManager.updateHearts(mainHearts)//if collide
             }
         }
+
+        gameManager.setOnScoreChangedListener { updatedScore ->
+            mainScore.text = updatedScore.toString().padStart(3, '0')
+        }
     }
 
 
@@ -104,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             var tick = 0
             while (true) {
                 tick++
+                gameManager.updateScore(Constants.POINT_FOR_SECOND)
 
                 StoneManager.moveAll(board = gameBoard.getBoard(), context = this@MainActivity,
                     player, gameManager = gameManager) {//move stones
