@@ -2,6 +2,12 @@ package com.example.car_project.utilities
 
 object Constants {
     const val POINT_FOR_SECOND = 0
-    val speed = 1000L
+
+
+
+    const val MEDIUM_SPEED = 400
+    const val HARD_SPEED = 250
+    const val MAX_SPEED = 120L
+    const val SPEED_INCREASE = 2
 
 }

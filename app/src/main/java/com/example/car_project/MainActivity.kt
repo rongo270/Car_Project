@@ -18,6 +18,8 @@ import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.utilities.BoardConfig
 import com.example.car_project.utilities.Constants
 
+private const val i = 150
+
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
 
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var musicManager: MusicManager
 
     private lateinit var soundEffect: SoundEffectManager
+
+    private var speed = 800L
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +116,18 @@ class MainActivity : AppCompatActivity() {
                         cols = gameBoard.getCols())//spawn stone
                 }
                 player.draw()//3.5 hours to fix some bag i had!
-                delay(Constants.speed)//w8 1 sec
+                delay(speed)//w8 speed sec
+                when {
+                    speed > Constants.MAX_SPEED && tick % 10 == 0 -> {
+                        speed -= Constants.SPEED_INCREASE
+                    }
+                    speed > Constants.HARD_SPEED && tick % 5 == 0 -> {
+                        speed -= Constants.SPEED_INCREASE
+                    }
+                    speed > Constants.MEDIUM_SPEED -> {
+                        speed -= Constants.SPEED_INCREASE
+                    }
+                }
             }
         }
     }
