@@ -15,6 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
+import com.example.car_project.utilities.BoardConfig
 import com.example.car_project.utilities.Constants
 
 class MainActivity : AppCompatActivity() {
@@ -44,8 +45,10 @@ class MainActivity : AppCompatActivity() {
 
         player = Player()//create player
 
+        val config = BoardConfig.default()
+
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
-        gameBoard = GameBoard(this, boardLayout)//start board
+        gameBoard = GameBoard(this, boardLayout,config)//start board
         gameBoard.initBoard(player)//build board
 
         findViews()
@@ -109,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                         cols = gameBoard.getCols())//spawn stone
                 }
                 player.draw()//3.5 hours to fix some bag i had!
-                delay(Constants.SPEED)//w8 1 sec
+                delay(Constants.speed)//w8 1 sec
             }
         }
     }
