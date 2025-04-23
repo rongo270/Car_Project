@@ -10,6 +10,7 @@ import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
 import androidx.lifecycle.lifecycleScope
+import com.example.car_project.logic.helpers.speedChanger.adjustSpeed
 import com.example.car_project.logic.managers.StoneManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -117,17 +118,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 player.draw()//3.5 hours to fix some bag i had!
                 delay(speed)//w8 speed sec
-                when {
-                    speed > Constants.MAX_SPEED && tick % 10 == 0 -> {
-                        speed -= Constants.SPEED_INCREASE
-                    }
-                    speed > Constants.HARD_SPEED && tick % 5 == 0 -> {
-                        speed -= Constants.SPEED_INCREASE
-                    }
-                    speed > Constants.MEDIUM_SPEED -> {
-                        speed -= Constants.SPEED_INCREASE
-                    }
-                }
+                speed = adjustSpeed(speed, tick)
             }
         }
     }
