@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             var tick = 0
             while (true) {
                 tick++
+
                 gameManager.updateScore(Constants.POINT_FOR_SECOND)
 
                 StoneManager.moveAll(board = gameBoard.getBoard(), context = this@MainActivity,
@@ -122,7 +123,9 @@ class MainActivity : AppCompatActivity() {
                         cols = gameBoard.getCols())//spawn stone
                 }
                 player.draw()//3.5 hours to fix some bag i had!
+
                 delay(speed)//w8 speed sec
+
                 speed = adjustSpeed(speed, tick)
             }
         }
