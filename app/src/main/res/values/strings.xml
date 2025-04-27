@@ -2,4 +2,9 @@
     <string name="app_name">Car_Project</string>
     <string name="right">RIGHT</string>
     <string name="left">LEFT</string>
+
+    <string name="dialog_title">Select Game Size</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
 </resources>

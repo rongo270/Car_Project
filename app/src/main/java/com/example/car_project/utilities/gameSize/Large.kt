@@ -1,4 +1,4 @@
-package com.example.car_project.logic.gameSize
+package com.example.car_project.utilities.gameSize
 
 object Large : GameSize {
     override val rows = 6

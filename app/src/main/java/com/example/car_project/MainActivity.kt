@@ -10,14 +10,10 @@ import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
 import androidx.lifecycle.lifecycleScope
-import com.example.car_project.logic.helpers.speedChanger.adjustSpeed
-import com.example.car_project.logic.managers.StoneManager
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.example.car_project.logic.gameflow.GameLoop
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.utilities.BoardConfig
-import com.example.car_project.utilities.Constants
 
 private const val i = 150
 
@@ -66,8 +62,8 @@ class MainActivity : AppCompatActivity() {
         soundEffect = SoundEffectManager()
         musicManager.startMusic(this)
 
-
-        startGameLoop()//start game
+        GameLoop.startGameLoop(lifecycleScope = lifecycleScope,
+            this,player,gameBoard,gameManager,mainHearts, speed)
     }
 
 
@@ -99,35 +95,6 @@ class MainActivity : AppCompatActivity() {
 
         gameManager.setOnScoreChangedListener { updatedScore ->
             mainScore.text = updatedScore.toString().padStart(3, '0')
-        }
-    }
-
-
-    private fun startGameLoop() {
-        lifecycleScope.launch {
-            var tick = 0
-            while (true) {
-                tick++
-
-                gameManager.updateScore(Constants.POINT_FOR_SECOND)
-
-                StoneManager.moveAll(board = gameBoard.getBoard(), context = this@MainActivity,
-                    player, gameManager = gameManager) {//move stones
-                    gameManager.checkIfHit(true)//if hit lose heart and fade
-                    gameManager.updateHearts(mainHearts)
-                    player.fade()
-                }
-
-                if (tick % 2 == 0) {//every 2 clock time
-                    StoneManager.spawn(board = gameBoard.getBoard(), context = this@MainActivity,
-                        cols = gameBoard.getCols())//spawn stone
-                }
-                player.draw()//3.5 hours to fix some bag i had!
-
-                delay(speed)//w8 speed sec
-
-                speed = adjustSpeed(speed, tick)
-            }
         }
     }
 }
