@@ -1,9 +1,4 @@
-package com.example.car_project.utilities
-
-import com.example.car_project.utilities.gameSize.GameSize
-import com.example.car_project.utilities.gameSize.Large
-import com.example.car_project.utilities.gameSize.Medium
-import com.example.car_project.utilities.gameSize.Small
+package com.example.car_project.utilities.gameSize
 
 data class BoardConfig(
     var rows: Int,

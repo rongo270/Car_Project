@@ -33,7 +33,7 @@ class Stone(var row: Int, var col: Int) {
             onHit()
             false //return
         } else {
-            moveDown(board, context) // if dont move stone down
+            moveDown(board, context) //If don't move stone down
         }
     }
 

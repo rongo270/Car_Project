@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import com.example.car_project.logic.entities.Player
-import com.example.car_project.utilities.BoardConfig
+import com.example.car_project.utilities.gameSize.BoardConfig
 
 class GameBoard(
     private val context: Context,
@@ -41,7 +41,6 @@ class GameBoard(
         player.init(board, context)
     }
 
-    fun getPlayer(): Player = player
     fun getBoard(): Array<Array<ImageView>> = board
     fun getCols(): Int = config.cols
 }

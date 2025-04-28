@@ -1,6 +1,8 @@
 package com.example.car_project.logic.entities
 
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
@@ -10,10 +12,12 @@ import android.os.Vibrator
 import android.widget.Toast
 import com.example.car_project.logic.managers.StoneManager
 import com.example.car_project.sound.SoundEffectManager
+import android.Manifest
+import androidx.core.content.ContextCompat
 
 
 class Player {
-    private var row: Int = 0//get rows and cols of table
+    private var row: Int = 0//Gets rows and cols of table
     private var col: Int = 0
     private lateinit var board: Array<Array<ImageView>>
     private lateinit var context: Context
@@ -25,7 +29,7 @@ class Player {
         this.board = board
         this.context = context
         soundEffect = SoundEffectManager()
-        row = board.size - 1//put the player in the middle and bottom of table (assume its odd number of cols
+        row = board.size - 1//Puts the player in the middle and bottom of table (assume its odd number of cols)
         col = board[0].size / 2
         draw()//
     }
@@ -34,16 +38,16 @@ class Player {
     fun move(deltaCol: Int, gameManager: GameManager, onHit: () -> Unit) {
         val stones = StoneManager.getStones()
         val newCol = col + deltaCol
-        if (newCol in 0 until board[0].size) {//check if not out of bounds
+        if (newCol in 0 until board[0].size) {//Check if not out of bounds
 
-            // Check if theres a stone in the new location
+            //Check if theres a stone in the new location
             val hitStone = stones.any { it.row == row && it.col == newCol }
 
-            clear()//clear the player
+            clear()//Clear the player
             col = newCol
-            draw()//draw the player in the now col
+            draw()//Draw the player in the now col
 
-            if (hitStone) { //if hit stone return to manager the hit was made
+            if (hitStone) { //If hit stone return to manager the hit was made
                 gameManager.checkIfHit(true)
                 onHit()
                 fade()
@@ -57,15 +61,11 @@ class Player {
         cell.setImageDrawable(
             AppCompatResources.getDrawable(context, R.drawable.steve)
         )
-         //sound_Media.walk_Media(context)
         cell.alpha = 1f
     }
 
     fun fade() {
-        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibrator.vibrate(
-            VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
-        )
+        vibrate(context)
         Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()
         soundEffect.hitMedia(context)
 
@@ -81,6 +81,30 @@ class Player {
     }
 
 
+//________________________________________VIBRATE_______________________________________________\\
+    private fun vibrate(context: Context) {
+        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator ?: return
+
+        if (!vibrator.hasVibrator()) return
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { //Android 12 (API 31) and newer
+            val hasPermission = ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.VIBRATE
+            ) == PackageManager.PERMISSION_GRANTED
+
+            if (hasPermission) {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
+                )
+            }
+        } else {
+            //Android 11 and below
+            vibrator.vibrate(
+                VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
+            )
+        }
+    }
 
 
     private fun clear() {

@@ -1,6 +1,6 @@
 package com.example.car_project.logic.managers
 
-import com.example.car_project.utilities.BoardConfig
+import com.example.car_project.utilities.gameSize.BoardConfig
 
 
 class BoardManager(

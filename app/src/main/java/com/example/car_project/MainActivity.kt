@@ -14,7 +14,7 @@ import com.example.car_project.logic.gameflow.GameLoop
 import com.example.car_project.logic.gameflow.GameUIManager
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
-import com.example.car_project.utilities.BoardConfig
+import com.example.car_project.utilities.gameSize.BoardConfig
 
 private const val i = 150
 
@@ -44,22 +44,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         enableEdgeToEdge()
 
-        player = Player()//create player
+        //create player
+        player = Player()
 
-        val config = BoardConfig.default()
-
+        //build and start board
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
-        gameBoard = GameBoard(this, boardLayout,config)//start board
-        gameBoard.initBoard(player)//build board
+        val config = BoardConfig.default()
+        gameBoard = GameBoard(this, boardLayout,config)
+        gameBoard.initBoard(player)
 
         findViews()
 
-        gameManager = GameManager(mainHearts.size)//give hearts
+        //give hearts
+        gameManager = GameManager(mainHearts.size)
 
+        //sound manage
         musicManager = MusicManager()
         musicManager.startMusic(this)
         soundEffect = SoundEffectManager()
 
+        //game flow
         GameUIManager.initViews(this,gameBoard,gameManager,mainLeft,mainRight,
             mainHearts,soundEffect,mainScore,player)
 
