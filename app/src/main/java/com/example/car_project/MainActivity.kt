@@ -14,7 +14,9 @@ import com.example.car_project.logic.gameflow.GameLoop
 import com.example.car_project.logic.gameflow.GameUIManager
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
+import com.example.car_project.ui.dialogs.SizeSelect
 import com.example.car_project.utilities.gameSize.BoardConfig
+import com.example.car_project.utilities.gameSize.GameSize
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,33 +45,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         enableEdgeToEdge()
 
+        findViews()
+        musicManager = MusicManager()
+        musicManager.startMusic(this)
+
+        SizeSelect.showSizeSelectionDialog(this) { selectedSize ->
+            setupGame(selectedSize)
+        }
+    }
+
+    private fun setupGame(selectedSize: GameSize){ //i may move it to another object, you think its good?
         //create player
         player = Player()
 
         //build and start board
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
-        val config = BoardConfig.default()
+        val config = BoardConfig.from(selectedSize)
         gameBoard = GameBoard(this, boardLayout,config)
         gameBoard.initBoard(player)
-
-        findViews()
 
         //give hearts
         gameManager = GameManager(mainHearts.size)
 
         //sound manage
-        musicManager = MusicManager()
-        musicManager.startMusic(this)
         soundEffect = SoundEffectManager()
 
         //game flow
-        GameUIManager.initViews(this,gameManager,mainLeft,mainRight,
-            mainHearts,soundEffect,mainScore,player)
+        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,player)
 
-        GameLoop.startGameLoop(lifecycleScope = lifecycleScope,
-            this,player,gameBoard,gameManager,mainHearts)
+        GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts)
     }
-
 
     private fun findViews() {
         mainLeft = findViewById(R.id.main_BTN_Left)

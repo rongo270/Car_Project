@@ -7,7 +7,7 @@ data class BoardConfig(
     var cellHeight: Int
 ) {
     companion object {
-       private fun from(size: GameSize): BoardConfig {
+       fun from(size: GameSize): BoardConfig {
             return BoardConfig(
                 rows = size.rows,
                 cols = size.cols,
@@ -16,6 +16,6 @@ data class BoardConfig(
             )
         }
 
-        fun default(): BoardConfig = from(Small)
+
     }
 }
