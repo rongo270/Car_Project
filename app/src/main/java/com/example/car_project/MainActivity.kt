@@ -11,6 +11,7 @@ import com.example.car_project.logic.entities.Player
 import com.google.android.material.textview.MaterialTextView
 import androidx.lifecycle.lifecycleScope
 import com.example.car_project.logic.gameflow.GameLoop
+import com.example.car_project.logic.gameflow.GameUIManager
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.utilities.BoardConfig
@@ -56,11 +57,12 @@ class MainActivity : AppCompatActivity() {
 
         gameManager = GameManager(mainHearts.size)//give hearts
 
-        initViews()
-
         musicManager = MusicManager()
-        soundEffect = SoundEffectManager()
         musicManager.startMusic(this)
+        soundEffect = SoundEffectManager()
+
+        GameUIManager.initViews(this,gameBoard,gameManager,mainLeft,mainRight,
+            mainHearts,soundEffect,mainScore)
 
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope,
             this,player,gameBoard,gameManager,mainHearts, speed)
@@ -76,25 +78,5 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.main_IMG_heart2),
             findViewById(R.id.main_IMG_heart3)
         )
-    }
-
-    private fun initViews() {
-        mainRight.setOnClickListener {
-            soundEffect.walkMedia(this)
-            gameManager.movePlayer(1, gameManager,gameBoard.getPlayer()) {
-                gameManager.updateHearts(mainHearts)//if collide
-            }
-        }
-
-        mainLeft.setOnClickListener {
-            soundEffect.walkMedia(this)
-            gameManager.movePlayer(-1, gameManager,gameBoard.getPlayer()) {
-                gameManager.updateHearts(mainHearts)//if collide
-            }
-        }
-
-        gameManager.setOnScoreChangedListener { updatedScore ->
-            mainScore.text = updatedScore.toString().padStart(3, '0')
-        }
     }
 }
