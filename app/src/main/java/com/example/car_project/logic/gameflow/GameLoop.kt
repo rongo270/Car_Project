@@ -14,6 +14,8 @@ import com.example.car_project.GameBoard
 
 object GameLoop {
 
+    private var speed = 800L
+
     fun startGameLoop(
         lifecycleScope: LifecycleCoroutineScope,
         context: Context,
@@ -21,11 +23,9 @@ object GameLoop {
         gameBoard: GameBoard,
         gameManager: GameManager,
         mainHearts: Array<AppCompatImageView>,
-        speedStart: Long
     ) {
         lifecycleScope.launch {
             var tick = 0
-            var speed = speedStart
 
             while (true) {
                 tick++

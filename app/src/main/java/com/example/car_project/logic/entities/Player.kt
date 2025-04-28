@@ -8,6 +8,7 @@ import com.example.car_project.logic.managers.GameManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.Toast
+import com.example.car_project.logic.managers.StoneManager
 import com.example.car_project.sound.SoundEffectManager
 
 
@@ -30,7 +31,8 @@ class Player {
     }
 
 
-    fun move(deltaCol: Int, stones: List<Stone>, gameManager: GameManager, onHit: () -> Unit) {
+    fun move(deltaCol: Int, gameManager: GameManager, onHit: () -> Unit) {
+        val stones = StoneManager.getStones()
         val newCol = col + deltaCol
         if (newCol in 0 until board[0].size) {//check if not out of bounds
 

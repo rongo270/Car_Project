@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var soundEffect: SoundEffectManager
 
-    private var speed = 800L
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,10 +61,10 @@ class MainActivity : AppCompatActivity() {
         soundEffect = SoundEffectManager()
 
         GameUIManager.initViews(this,gameBoard,gameManager,mainLeft,mainRight,
-            mainHearts,soundEffect,mainScore)
+            mainHearts,soundEffect,mainScore,player)
 
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope,
-            this,player,gameBoard,gameManager,mainHearts, speed)
+            this,player,gameBoard,gameManager,mainHearts)
     }
 
 
