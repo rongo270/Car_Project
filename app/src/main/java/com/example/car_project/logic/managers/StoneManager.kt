@@ -29,7 +29,7 @@ object StoneManager {
 
     fun getStones(): List<Stone> = stones
 
-    fun reset() {
-        stones.clear()
-    }
+//    fun reset() {
+//        stones.clear()
+//    }
 }

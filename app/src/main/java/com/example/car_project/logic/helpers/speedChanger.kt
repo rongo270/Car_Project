@@ -2,7 +2,7 @@ package com.example.car_project.logic.helpers
 
 import com.example.car_project.utilities.Constants
 
-object speedChanger {
+object SpeedChanger {
     fun adjustSpeed(currentSpeed: Long, tick: Int):Long{
          when {
             currentSpeed > Constants.MAX_SPEED && tick % 10 == 0 -> {

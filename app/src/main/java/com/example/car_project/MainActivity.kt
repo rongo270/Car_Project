@@ -16,7 +16,6 @@ import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.utilities.gameSize.BoardConfig
 
-private const val i = 150
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameBoard: GameBoard
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         soundEffect = SoundEffectManager()
 
         //game flow
-        GameUIManager.initViews(this,gameBoard,gameManager,mainLeft,mainRight,
+        GameUIManager.initViews(this,gameManager,mainLeft,mainRight,
             mainHearts,soundEffect,mainScore,player)
 
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope,

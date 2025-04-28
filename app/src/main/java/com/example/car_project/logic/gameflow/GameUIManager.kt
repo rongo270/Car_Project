@@ -3,7 +3,6 @@ package com.example.car_project.logic.gameflow
 import android.content.Context
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
-import com.example.car_project.GameBoard
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.sound.SoundEffectManager
@@ -14,7 +13,6 @@ object GameUIManager {
 
      fun initViews(
         context: Context,
-        gameBoard: GameBoard,
         gameManager: GameManager,
         mainLeft: AppCompatImageButton,
         mainRight: AppCompatImageButton,

@@ -2,7 +2,7 @@ package com.example.car_project.logic.gameflow
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.car_project.logic.entities.Player
-import com.example.car_project.logic.helpers.speedChanger.adjustSpeed
+import com.example.car_project.logic.helpers.SpeedChanger.adjustSpeed
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.logic.managers.StoneManager
 import com.example.car_project.utilities.Constants
