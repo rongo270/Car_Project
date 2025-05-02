@@ -10,5 +10,6 @@ object Constants {
     const val HARD_SPEED = 250
     const val MAX_SPEED = 120L
 
-    const val LEVEL_TWO = 10
+    const val LEVEL_TWO = 100
+    const val LEVEL_THREE = 300
 }

@@ -32,6 +32,9 @@ object StoneManager {
     fun levelGoesTwo(){
         currentLevel = 2
     }
+    fun levelGoesThree(){
+        currentLevel = 3
+    }
 
     fun getStones(): List<Stone> = stones
 

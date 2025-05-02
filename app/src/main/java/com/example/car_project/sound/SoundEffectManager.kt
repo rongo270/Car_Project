@@ -21,7 +21,7 @@ class SoundEffectManager {
 
     fun walkMedia(context: Context){
         walkPlayer = MediaPlayer.create(context, R.raw.walk)
-        walkPlayer.setVolume(0.02f, 0.02f)
+        walkPlayer.setVolume(0.08f, 0.08f)
         walkPlayer.setOnCompletionListener { it.release() }
         walkPlayer.start()
     }

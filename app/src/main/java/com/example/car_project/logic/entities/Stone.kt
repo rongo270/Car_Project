@@ -12,6 +12,7 @@ class Stone(var row: Int, var col: Int, stoneLevel:Int) {
     private val drawableRes = when (stoneLevel) {
         1 -> R.drawable.creeper
         2 -> R.drawable.black_skeleton
+        3 -> R.drawable.enderman
         else -> R.drawable.creeper
     }
 

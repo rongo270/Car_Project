@@ -12,6 +12,7 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.GameBoard
+import com.example.car_project.logic.levels.LevelThree
 import com.example.car_project.logic.levels.LevelTwo
 import com.example.car_project.sound.SoundEffectManager
 
@@ -58,6 +59,10 @@ object GameLoop {
 
                 if(tick == Constants.LEVEL_TWO){
                     LevelTwo.toLevelTwo(context,layout,soundEffect)
+                }
+
+                if(tick == Constants.LEVEL_THREE){
+                    LevelThree.toLevelThree(context,layout,soundEffect)
                 }
 
                 player.draw()
