@@ -70,7 +70,7 @@ More features, enemies, and game mechanics are planned to be added in future upd
 
 ## 🙌 Credits
 
-Created by [Ron Golan].  
+Created by Ron Golan.  
 Sprites inspired by Minecraft (for personal/educational use).
 
 ---
