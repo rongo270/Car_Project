@@ -6,7 +6,7 @@ data class BoardConfig(
     var cellWidth: Int,
     var cellHeight: Int
 ) {
-    companion object {
+    companion object {//make the board
        fun from(size: GameSize): BoardConfig {
             return BoardConfig(
                 rows = size.rows,

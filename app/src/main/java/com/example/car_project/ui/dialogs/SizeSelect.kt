@@ -16,7 +16,7 @@ import com.example.car_project.utilities.gameSize.Small
 object SizeSelect {
 
     fun showSizeSelectionDialog(context: Context, onSizeSelected: (GameSize) -> Unit) {
-        val layout = LinearLayout(context).apply {
+        val layout = LinearLayout(context).apply {//size
             orientation = LinearLayout.VERTICAL
             setPadding(40, 40, 40, 40)
             gravity = Gravity.CENTER
@@ -37,6 +37,7 @@ object SizeSelect {
             .setCancelable(false)
             .create()
 
+        //listen and build
         btnSmall.setOnClickListener {
             onSizeSelected(Small)
             dialog.dismiss()

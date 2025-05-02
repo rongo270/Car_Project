@@ -64,9 +64,10 @@ class Player {
         cell.alpha = 1f
     }
 
+//_____________________________________PLAYER HIT_______________________________________________\\
     fun fade() {
         vibrate(context)
-        Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Ouch", Toast.LENGTH_SHORT).show()//Toast
         soundEffect.hitMedia(context)
 
         getCell().animate()

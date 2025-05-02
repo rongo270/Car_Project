@@ -57,15 +57,14 @@ object GameLoop {
                     )
                 }
 
-                if(tick == Constants.LEVEL_TWO){
+                if(tick == Constants.LEVEL_TWO){//Levels check, may need change for better complexities
                     LevelTwo.toLevelTwo(context,layout,soundEffect)
                 }
-
                 if(tick == Constants.LEVEL_THREE){
                     LevelThree.toLevelThree(context,layout,soundEffect)
                 }
 
-                player.draw()
+                player.draw()//needed
 
                 delay(speed)
 

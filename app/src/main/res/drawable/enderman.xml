@@ -4,24 +4,20 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
 
-    <!-- רקע שחור -->
     <path android:fillColor="#000000" android:pathData="M0,0h48v48h-48z" />
 
-    <!-- עין שמאל -->
     <path android:fillColor="#FFC0CB" android:pathData="M1,28h6v5h-6z" />
     <path android:fillColor="#FF69B4" android:pathData="M7,28h5v5h-5z" />
     <path android:fillColor="#FF69B4" android:pathData="M10,28h5v5h-5z" />
     <path android:fillColor="#FF69B4" android:pathData="M14,28h5v5h-5z" />
     <path android:fillColor="#FFC0CB" android:pathData="M18,28h5v5h-5z" />
 
-    <!-- עין ימין -->
     <path android:fillColor="#FFC0CB" android:pathData="M26,28h5v5h-5z" />
     <path android:fillColor="#FF69B4" android:pathData="M31,28h5v5h-5z" />
     <path android:fillColor="#FF69B4" android:pathData="M35,28h5v5h-5z" />
     <path android:fillColor="#FF69B4" android:pathData="M39,28h5v5h-5z" />
     <path android:fillColor="#FFC0CB" android:pathData="M43,28h5v5h-5z" />
-
-    <!-- כמה טלאים אפורים -->
+    
     <path android:fillColor="#1A1A1A" android:pathData="M12,12h8v8h-8z" />
     <path android:fillColor="#1A1A1A" android:pathData="M28,12h8v8h-8z" />
 </vector>

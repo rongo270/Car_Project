@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
     }
 
+
     private fun findViews() {
         mainLeft = findViewById(R.id.main_BTN_Left)
         mainRight = findViewById(R.id.main_BTN_Right)

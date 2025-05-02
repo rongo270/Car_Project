@@ -29,6 +29,10 @@ object StoneManager {
         }
     }
 
+    fun getStones(): List<Stone> = stones
+
+    //_________________________________LEVELS___________________________________________________\\
+
     fun levelGoesTwo(){
         currentLevel = 2
     }
@@ -36,9 +40,7 @@ object StoneManager {
         currentLevel = 3
     }
 
-    fun getStones(): List<Stone> = stones
-
 //    fun reset() {
-//        stones.clear()
+//        stones.clear() will be next h.m
 //    }
 }

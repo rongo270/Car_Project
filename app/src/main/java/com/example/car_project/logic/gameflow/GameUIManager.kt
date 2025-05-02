@@ -23,6 +23,7 @@ object GameUIManager {
 
     )
      {
+//__________________________________LEFT AND RIGHT___________________________________________\\
         mainRight.setOnClickListener {
             soundEffect.walkMedia(context)
             player.move(1, gameManager){
@@ -36,7 +37,7 @@ object GameUIManager {
                 gameManager.updateHearts(mainHearts)//if collide
             }
         }
-
+//___________________________________SCORE REFRESHER____________________________________________\
         gameManager.setOnScoreChangedListener { updatedScore ->
             mainScore.text = updatedScore.toString().padStart(3, '0')
         }
