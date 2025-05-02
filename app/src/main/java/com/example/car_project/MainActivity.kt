@@ -1,6 +1,7 @@
 package com.example.car_project
 
 import android.os.Bundle
+import android.view.View
 import android.widget.GridLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.example.car_project.utilities.gameSize.GameSize
 
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var gameBoard: GameBoard
 
     private lateinit var gameManager: GameManager
@@ -73,7 +75,8 @@ class MainActivity : AppCompatActivity() {
         //game flow
         GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,player)
 
-        GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts)
+        val rootLayout = findViewById<View>(R.id.main)
+        GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
     }
 
     private fun findViews() {

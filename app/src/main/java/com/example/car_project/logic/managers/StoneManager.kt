@@ -29,7 +29,7 @@ object StoneManager {
         }
     }
 
-    fun levelTwo(){
+    fun levelGoesTwo(){
         currentLevel = 2
     }
 

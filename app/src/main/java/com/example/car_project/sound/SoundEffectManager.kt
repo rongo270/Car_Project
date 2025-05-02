@@ -10,6 +10,8 @@ class SoundEffectManager {
 
     private lateinit var walkPlayer: MediaPlayer
 
+    private lateinit var netherPortal: MediaPlayer
+
     fun hitMedia(context: Context){
         hitPlayer = MediaPlayer.create(context, R.raw.ouch_sound)
         hitPlayer.setVolume(0.1f, 0.1f)
@@ -24,5 +26,11 @@ class SoundEffectManager {
         walkPlayer.start()
     }
 
+    fun netherMedia(context: Context){
+        netherPortal = MediaPlayer.create(context, R.raw.thenetherprotol)
+        netherPortal.setVolume(0.1f, 0.1f)
+        netherPortal.setOnCompletionListener { it.release() }
+        netherPortal.start()
+    }
 
 }

@@ -9,8 +9,11 @@ import com.example.car_project.utilities.Constants
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import android.content.Context
+import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.GameBoard
+import com.example.car_project.logic.levels.LevelTwo
+import com.example.car_project.sound.SoundEffectManager
 
 object GameLoop {
 
@@ -23,6 +26,8 @@ object GameLoop {
         gameBoard: GameBoard,
         gameManager: GameManager,
         mainHearts: Array<AppCompatImageView>,
+        layout: View,
+        soundEffect: SoundEffectManager,
     ) {
         lifecycleScope.launch {
             var tick = 0
@@ -52,8 +57,9 @@ object GameLoop {
                 }
 
                 if(tick == Constants.LEVEL_TWO){
-                    StoneManager.levelTwo()
+                    LevelTwo.toLevelTwo(context,layout,soundEffect)
                 }
+
                 player.draw()
 
                 delay(speed)
