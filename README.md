@@ -17,10 +17,10 @@
 - Three difficulty levels:
   - **Level 1:** Creeper enemies with standard background.
   - **Level 2:** Black Skeleton enemies with Nether background.
-  - **Level 3:** Ender Dragon enemies with The End background.
+  - **Level 3:** Endermans enemies with The End background.
 - Dynamic background change when leveling up.
 - Score increases every second.
-- Lose a heart on collision. Game ends when hearts reach zero.
+- Lose a heart on collision. (in 0 hears the hears get restore)
 - Sound effects and background music.
 - Custom vector drawables for enemy sprites.
 
@@ -63,9 +63,14 @@
 - Add high score saving.
 - Improve animations.
 
+## 📌 What's next
+
+This project is still under active development!  
+More features, enemies, and game mechanics are planned to be added in future updates.
+
 ## 🙌 Credits
 
-Created by [Your Name].  
+Created by [Ron Golan].  
 Sprites inspired by Minecraft (for personal/educational use).
 
 ---
