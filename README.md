@@ -5,7 +5,8 @@
 ## 📸 Screenshots
 ![Screenshot_20250502-164146_Car_Project 1](https://github.com/user-attachments/assets/d205bee2-360d-4826-bbc6-c211d975089d)
 ![Screenshot_20250502-170752_Car_Project 1](https://github.com/user-attachments/assets/86693450-2987-4837-a80b-56430dfa4732)
-![Screenshot_20250502-164325_Car_Project 1](https://github.com/user-attachments/assets/684fa715-3a51-4fbd-80b2-51bc0757fdc8)
+![Screenshot_20250502-171429_Car_Project 1](https://github.com/user-attachments/assets/8650e1c4-6232-4bb3-8d5e-51a1a966c2e9)
+![Screenshot_20250502-171450_Car_Project 1](https://github.com/user-attachments/assets/d3523cde-ef6c-4cd8-a936-10cdcbcc71e1)
 
 
 
