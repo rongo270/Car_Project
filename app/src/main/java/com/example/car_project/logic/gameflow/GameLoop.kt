@@ -51,6 +51,9 @@ object GameLoop {
                     )
                 }
 
+                if(tick == Constants.LEVEL_TWO){
+                    StoneManager.levelTwo()
+                }
                 player.draw()
 
                 delay(speed)

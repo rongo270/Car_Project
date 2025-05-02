@@ -7,10 +7,12 @@ import com.example.car_project.logic.entities.Stone
 
 object StoneManager {
     private val stones = mutableListOf<Stone>()
+    private var currentLevel = 1
+
 
     fun spawn(board: Array<Array<ImageView>>, context: Context, cols: Int) {
         val col = (0 until cols).random()
-        val stone = Stone(0, col)
+        val stone = Stone(0, col,currentLevel)
         stones.add(stone)
         stone.drawStone(board, context)
     }
@@ -25,6 +27,10 @@ object StoneManager {
                 iterator.remove()
             }
         }
+    }
+
+    fun levelTwo(){
+        currentLevel = 2
     }
 
     fun getStones(): List<Stone> = stones

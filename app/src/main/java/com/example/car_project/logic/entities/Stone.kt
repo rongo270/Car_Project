@@ -6,12 +6,18 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
 import com.example.car_project.logic.managers.GameManager
 
-class Stone(var row: Int, var col: Int) {
+class Stone(var row: Int, var col: Int, stoneLevel:Int) {
 
+
+    private val drawableRes = when (stoneLevel) {
+        1 -> R.drawable.creeper
+        2 -> R.drawable.black_skeleton
+        else -> R.drawable.creeper
+    }
 
     fun drawStone(board: Array<Array<ImageView>>, context: Context) {//draw stone
         board[row][col].setImageDrawable(
-            AppCompatResources.getDrawable(context, R.drawable.stone)
+            AppCompatResources.getDrawable(context, drawableRes)
         )
     }
 
@@ -40,6 +46,7 @@ class Stone(var row: Int, var col: Int) {
     private fun clear(board: Array<Array<ImageView>>) {
         board[row][col].setImageDrawable(null)
     }
+
 
     fun getNextRow(): Int = row + 1
 }
