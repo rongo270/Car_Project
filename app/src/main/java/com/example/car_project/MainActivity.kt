@@ -1,5 +1,7 @@
 package com.example.car_project
 
+import android.content.Context
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import android.widget.GridLayout
@@ -40,6 +42,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var soundEffect: SoundEffectManager
 
+    private lateinit var sensorManager: SensorManager
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,12 +56,13 @@ class MainActivity : AppCompatActivity() {
         musicManager = MusicManager()
         musicManager.startMusic(this)
 
-        SizeSelect.showSizeSelectionDialog(this) { selectedSize ->
-            setupGame(selectedSize)
+        SizeSelect.showSizeSelectionDialog(this) { selectedSize, useTilt, useArrows ->
+            setupGame(selectedSize, useTilt, useArrows)
         }
+
     }
 
-    private fun setupGame(selectedSize: GameSize){ //i may move it to another object, you think its good?
+private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boolean) { //i may move it to another object, you think its good?
         //create player
         player = Player()
 
@@ -72,8 +78,14 @@ class MainActivity : AppCompatActivity() {
         //sound manage
         soundEffect = SoundEffectManager()
 
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        if(!useArrows){
+            mainLeft.visibility = View.GONE
+            mainRight.visibility = View.GONE
+        }
         //game flow
-        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,player)
+        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,player,sensorManager,useTilt)
 
         val rootLayout = findViewById<View>(R.id.main)
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
