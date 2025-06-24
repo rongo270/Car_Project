@@ -39,12 +39,12 @@ object SizeSelect {
 
         val tiltCheckbox = CheckBox(context).apply {
             text = context.getString(R.string.control_tilt)
-            isChecked = true
+            isChecked = false
         }
 
         val arrowsCheckbox = CheckBox(context).apply {
             text = context.getString(R.string.control_arrows)
-            isChecked = false
+            isChecked = true
         }
 
         val controlLayout = LinearLayout(context).apply {

@@ -21,11 +21,13 @@ object StoneManager {
     }
 
     fun moveAll(board: Array<Array<ImageView>>, context: Context, player: Player,
-                gameManager: GameManager, onHit: () -> Unit) {
+                gameManager: GameManager, onHit: (isCoin:Boolean) -> Unit) {
         val iterator = stones.iterator()
         while (iterator.hasNext()) {//goes over all array
             val stone = iterator.next()
-            val alive = stone.update(board, context, player, gameManager, onHit)//update the stone
+            val alive = stone.update(board, context, player, gameManager){
+                onHit(stone.isCoin)
+            }//update the stone
             if (!alive) {//if collide "kill" stone and remove
                 iterator.remove()
             }

@@ -43,11 +43,17 @@ object GameLoop {
                     context = context,
                     player = player,
                     gameManager = gameManager
-                ) {
+                ) { isCoin ->
+                    if(isCoin){
                     gameManager.checkIfHit(true)
                     gameManager.updateHearts(mainHearts)
                     player.fade()
+                    }
+                    else {
+
+                    }
                 }
+
 
                 if (tick % 2 == 0) {
                     StoneManager.spawn(
