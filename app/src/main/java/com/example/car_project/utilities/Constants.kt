@@ -12,4 +12,6 @@ object Constants {
 
     const val LEVEL_TWO = 100
     const val LEVEL_THREE = 300
+
+    const val COIN_CHANCE = 60 // % CHANCE TO SPAWN A COIN
 }

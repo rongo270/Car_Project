@@ -6,14 +6,18 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
 import com.example.car_project.logic.managers.GameManager
 
-class Stone(var row: Int, var col: Int, stoneLevel:Int) {
+class Stone(var row: Int, var col: Int, stoneLevel:Int, var isCoin:Boolean = false) {
 
     //Stone Levels
-    private val drawableRes = when (stoneLevel) {
-        1 -> R.drawable.creeper
-        2 -> R.drawable.black_skeleton
-        3 -> R.drawable.enderman
-        else -> R.drawable.creeper
+    private val drawableRes = if (isCoin) {
+        R.drawable.diamond
+    } else {
+        when (stoneLevel) {
+            1 -> R.drawable.creeper
+            2 -> R.drawable.black_skeleton
+            3 -> R.drawable.enderman
+            else -> R.drawable.creeper
+        }
     }
 
     fun drawStone(board: Array<Array<ImageView>>, context: Context) {//draw stone

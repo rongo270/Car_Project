@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.entities.Stone
+import com.example.car_project.utilities.Constants
 
 object StoneManager {
     private val stones = mutableListOf<Stone>()
@@ -12,7 +13,9 @@ object StoneManager {
 
     fun spawn(board: Array<Array<ImageView>>, context: Context, cols: Int) {
         val col = (0 until cols).random()
-        val stone = Stone(0, col,currentLevel)
+        val roll = (1..100).random()
+        val isCoin = roll <= Constants.COIN_CHANCE
+        val stone = Stone(0, col,currentLevel,isCoin)
         stones.add(stone)
         stone.drawStone(board, context)
     }
