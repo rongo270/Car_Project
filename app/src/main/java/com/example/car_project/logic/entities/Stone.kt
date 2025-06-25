@@ -41,7 +41,7 @@ class Stone(var row: Int, var col: Int, stoneLevel:Int, var isCoin:Boolean = fal
                gameManager: GameManager, onHit: (isCoin:Boolean) -> Unit): Boolean {
         return if (gameManager.didCollide(this, player)) {//check if collide
             clear(board)//clear img from board
-            onHit(!this.isCoin)
+            onHit(this.isCoin)
             false //return
         } else {
             moveDown(board, context) //If don't move stone down

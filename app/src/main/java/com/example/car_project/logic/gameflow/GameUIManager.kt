@@ -23,6 +23,7 @@ object GameUIManager {
         mainHearts: Array<AppCompatImageView>,
         soundEffect: SoundEffectManager,
         mainScore: MaterialTextView,
+        mainCoin: MaterialTextView,
         player: Player,
         sensorManger: SensorManager,
         tilt:Boolean
@@ -32,14 +33,26 @@ object GameUIManager {
         mainRight.setOnClickListener {
             soundEffect.walkMedia(context)
             player.move(1, gameManager){
-                gameManager.updateHearts(mainHearts)//if collide
+                isCoin ->
+                if(!isCoin) {
+                    gameManager.updateHearts(mainHearts)//if collide
+                }
+                else{
+                    gameManager.updateCoin(1)
+                }
             }
         }
 
         mainLeft.setOnClickListener {
             soundEffect.walkMedia(context)
             player.move(-1, gameManager){
-                gameManager.updateHearts(mainHearts)//if collide
+                    isCoin ->
+                if(!isCoin) {
+                    gameManager.updateHearts(mainHearts)//if collide
+                }
+                else{
+                    gameManager.updateCoin(1)
+                }
             }
         }
 
@@ -81,5 +94,9 @@ object GameUIManager {
         gameManager.setOnScoreChangedListener { updatedScore ->
             mainScore.text = updatedScore.toString().padStart(3, '0')
         }
+//___________________________________Coin REFRESHER______________________________________________\\
+         gameManager.setOnCoinChangedListener { updatedCoin ->
+             mainCoin.text = "💎 ${updatedCoin.toString().padStart(3, '0')}"
+         }
     }
 }

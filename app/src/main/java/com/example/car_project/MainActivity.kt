@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainScore: MaterialTextView
 
+    private lateinit var mainCoin: MaterialTextView
+
     private lateinit var mainHearts: Array<AppCompatImageView>
 
     private lateinit var player : Player
@@ -85,7 +87,7 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
             mainRight.visibility = View.GONE
         }
         //game flow
-        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,player,sensorManager,useTilt)
+        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,mainCoin,player,sensorManager,useTilt)
 
         val rootLayout = findViewById<View>(R.id.main)
         GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
@@ -96,6 +98,7 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
         mainLeft = findViewById(R.id.main_BTN_Left)
         mainRight = findViewById(R.id.main_BTN_Right)
         mainScore = findViewById(R.id.main_LBL_score)
+        mainCoin = findViewById(R.id.main_LBL_diamonds)
         mainHearts = arrayOf(
             findViewById(R.id.main_IMG_heart1),
             findViewById(R.id.main_IMG_heart2),

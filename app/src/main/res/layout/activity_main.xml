@@ -94,4 +94,15 @@
         android:textSize="@dimen/default_string_size"
         android:textStyle="bold" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/main_LBL_diamonds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_LBL_score"
+        android:layout_alignStart="@id/main_LBL_score"
+        android:layout_marginTop="4dp"
+        android:text="💎 0"
+        android:textSize="@dimen/default_string_size"
+        android:textStyle="bold" />
+
 </RelativeLayout>

@@ -10,9 +10,15 @@ class GameManager(private val lifeCount: Int = 3) {
     private var score: Int = 0
         private set
 
+    private var coin: Int = 0
+        private set
+
     private var onScoreChanged: ((Int) -> Unit)? = null
 
     private var obstacleHit: Int = 0
+        private set
+
+    private var coinPick: ((Int) -> Unit)? = null
         private set
 
     private val isGameOver: Boolean
@@ -58,6 +64,15 @@ class GameManager(private val lifeCount: Int = 3) {
         }
     }
 
+    //_____________________________Coin Update_________________________________________________\\
+
+    fun setOnCoinChangedListener(listener: (Int) -> Unit) {
+        coinPick = listener
+    }
+    fun updateCoin(number: Int){
+        coin += number
+        coinPick?.invoke(coin)
+    }
 
     //______________________________Game-Over___________________________________________________\\
     private fun resetLives() {
@@ -65,7 +80,5 @@ class GameManager(private val lifeCount: Int = 3) {
     }
 
     fun refresh(){
-
     }
-
 }

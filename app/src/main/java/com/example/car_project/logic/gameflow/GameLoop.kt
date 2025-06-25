@@ -43,14 +43,15 @@ object GameLoop {
                     context = context,
                     player = player,
                     gameManager = gameManager
-                ) { isCoin ->
-                    if(isCoin){
+                )
+                { isCoin ->
                     gameManager.checkIfHit(true)
-                    gameManager.updateHearts(mainHearts)
+                        if(!isCoin){
+                            gameManager.updateHearts(mainHearts)
                     player.fade()
                     }
                     else {
-
+                            gameManager.updateCoin(1)
                     }
                 }
 

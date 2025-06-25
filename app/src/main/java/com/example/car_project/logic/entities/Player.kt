@@ -35,22 +35,24 @@ class Player {
     }
 
 
-    fun move(deltaCol: Int, gameManager: GameManager, onHit: () -> Unit) {
+    fun move(deltaCol: Int, gameManager: GameManager, onHit: (isCoin:Boolean) -> Unit) {
         val stones = StoneManager.getStones()
         val newCol = col + deltaCol
         if (newCol in 0 until board[0].size) {//Check if not out of bounds
 
             //Check if theres a stone in the new location
             val hitStone = stones.any { it.row == row && it.col == newCol }
-
+            val isCoin = stones.any() {it.row == row && it.col == newCol && it.isCoin}
             clear()//Clear the player
             col = newCol
             draw()//Draw the player in the now col
 
             if (hitStone) { //If hit stone return to manager the hit was made
                 gameManager.checkIfHit(true)
-                onHit()
-                fade()
+                onHit(isCoin)
+                if(!isCoin) {
+                    fade()
+                }
             }
 
         }
