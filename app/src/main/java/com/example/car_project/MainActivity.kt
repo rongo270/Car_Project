@@ -108,4 +108,15 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
             findViewById(R.id.main_IMG_heart3)
             )
     }
+    override fun onPause() {
+        super.onPause()
+        GameLoop.pauseGameLoop()
+        musicManager.pauseMusic()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GameLoop.resume()
+        musicManager.resumeMusic()
+    }
 }

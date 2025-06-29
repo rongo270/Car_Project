@@ -16,4 +16,12 @@ class MusicManager {
         mediaPlayer.start()
     }
 
+    fun pauseMusic() {
+        mediaPlayer.pause()
+    }
+
+    fun resumeMusic() {
+        mediaPlayer.start()
+    }
+
 }
