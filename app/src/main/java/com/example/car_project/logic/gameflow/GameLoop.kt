@@ -10,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.GameBoard
 import com.example.car_project.logic.levels.LevelThree
@@ -45,13 +46,13 @@ object GameLoop {
                     gameManager = gameManager
                 )
                 { isCoin ->
-                    gameManager.checkIfHit(true)
-                        if(!isCoin){
-                            gameManager.updateHearts(mainHearts)
-                    player.fade()
-                    }
-                    else {
-                            gameManager.updateCoin(1)
+                    if (!isCoin) {
+                        gameManager.checkIfHit(true)
+                        gameManager.updateHearts(mainHearts)
+                        player.fade()
+                    } else {
+                        gameManager.updateCoin(1)
+                        gameManager.updateHearts(mainHearts)
                     }
                 }
 

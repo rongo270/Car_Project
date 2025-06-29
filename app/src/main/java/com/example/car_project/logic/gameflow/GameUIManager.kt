@@ -39,6 +39,7 @@ object GameUIManager {
                 }
                 else{
                     gameManager.updateCoin(1)
+                    gameManager.updateHearts(mainHearts)
                 }
             }
         }
@@ -52,6 +53,7 @@ object GameUIManager {
                 }
                 else{
                     gameManager.updateCoin(1)
+                    gameManager.updateHearts(mainHearts)
                 }
             }
         }
@@ -92,7 +94,8 @@ object GameUIManager {
         }
 //___________________________________SCORE REFRESHER____________________________________________\\
         gameManager.setOnScoreChangedListener { updatedScore ->
-            mainScore.text = updatedScore.toString().padStart(3, '0')
+           //mainScore.text = updatedScore.toString().padStart(3, '0')
+            mainScore.text = "\uD83C\uDFC6 ${updatedScore.toString().padStart(3, '0')}"
         }
 //___________________________________Coin REFRESHER______________________________________________\\
          gameManager.setOnCoinChangedListener { updatedCoin ->

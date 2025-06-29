@@ -76,6 +76,7 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
 
         //give hearts
         gameManager = GameManager(mainHearts.size)
+        gameManager.resetLives(mainHearts)
 
         //sound manage
         soundEffect = SoundEffectManager()
@@ -100,9 +101,11 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
         mainScore = findViewById(R.id.main_LBL_score)
         mainCoin = findViewById(R.id.main_LBL_diamonds)
         mainHearts = arrayOf(
+            findViewById(R.id.main_IMG_armor_heart1),
+            findViewById(R.id.main_IMG_armor_heart2),
             findViewById(R.id.main_IMG_heart1),
             findViewById(R.id.main_IMG_heart2),
             findViewById(R.id.main_IMG_heart3)
-        )
+            )
     }
 }

@@ -48,13 +48,15 @@ class Player {
             draw()//Draw the player in the now col
 
             if (hitStone) { //If hit stone return to manager the hit was made
-                gameManager.checkIfHit(true)
-                onHit(isCoin)
-                if(!isCoin) {
+                if(isCoin){
+                    onHit(true)
+                }
+                else{
+                    gameManager.checkIfHit(true)
+                    onHit(false)
                     fade()
                 }
             }
-
         }
     }
 

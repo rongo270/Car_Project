@@ -5,7 +5,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.logic.entities.Player
 import com.example.car_project.logic.entities.Stone
 
-class GameManager(private val lifeCount: Int = 3) {
+class GameManager(private val lifeCount: Int = 5) {
 
     private var score: Int = 0
         private set
@@ -15,7 +15,7 @@ class GameManager(private val lifeCount: Int = 3) {
 
     private var onScoreChanged: ((Int) -> Unit)? = null
 
-    private var obstacleHit: Int = 0
+    private var obstacleHit: Int = 2
         private set
 
     private var coinPick: ((Int) -> Unit)? = null
@@ -24,7 +24,7 @@ class GameManager(private val lifeCount: Int = 3) {
     private val isGameOver: Boolean
         get() = obstacleHit >= lifeCount
 
-                                 //functions
+    //functions
     //___________________________________________________________________________________________\\
 
 
@@ -32,12 +32,13 @@ class GameManager(private val lifeCount: Int = 3) {
     fun setOnScoreChangedListener(listener: (Int) -> Unit) {
         onScoreChanged = listener
     }
-    fun updateScore(number: Int){
+
+    fun updateScore(number: Int) {
         score += number
         onScoreChanged?.invoke(score)
     }
 
-//________________________________HIT dealer___________________________________________________\\
+    //________________________________HIT dealer___________________________________________________\\
     fun checkIfHit(wasHit: Boolean) {
         if (wasHit) {
             obstacleHit++
@@ -50,14 +51,16 @@ class GameManager(private val lifeCount: Int = 3) {
     }
 
 
-//___________________________HEART CHANGER______________________________________________________\\
+    //___________________________HEART CHANGER______________________________________________________\\
+
+
     fun updateHearts(hearts: Array<AppCompatImageView>) {
         for (i in hearts.indices) {
             hearts[i].visibility = if (i < obstacleHit) View.INVISIBLE else View.VISIBLE
         }
 
         if (isGameOver) {
-            resetLives()
+            resetLives(hearts)
             for (heart in hearts) {
                 heart.visibility = View.VISIBLE
             }
@@ -69,16 +72,25 @@ class GameManager(private val lifeCount: Int = 3) {
     fun setOnCoinChangedListener(listener: (Int) -> Unit) {
         coinPick = listener
     }
-    fun updateCoin(number: Int){
+
+    fun updateCoin(number: Int) {
         coin += number
+
+        while (coin >= 10 && obstacleHit > 0) {
+            coin -= 10
+            obstacleHit--
+        }
+
         coinPick?.invoke(coin)
     }
 
     //______________________________Game-Over___________________________________________________\\
-    private fun resetLives() {
-        obstacleHit = 0
+     fun resetLives(hearts: Array<AppCompatImageView>) {
+        hearts[0].visibility = View.INVISIBLE
+        hearts[1].visibility = View.INVISIBLE
+        obstacleHit = 2
     }
 
-    fun refresh(){
+    fun refresh() {
     }
 }
