@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.car_project.R
 import com.example.car_project.utilities.gameSize.GameSize
@@ -33,10 +34,6 @@ object SizeSelect {
         val btnLarge =
             AppCompatButton(context).apply { text = context.getString(R.string.size_large) }
 
-        layout.addView(btnSmall)
-        layout.addView(btnMedium)
-        layout.addView(btnLarge)
-
         val tiltCheckbox = CheckBox(context).apply {
             text = context.getString(R.string.control_tilt)
             isChecked = false
@@ -54,7 +51,15 @@ object SizeSelect {
             addView(arrowsCheckbox)
         }
 
+        val btnLeaderboard = AppCompatButton(context).apply {
+            text = "Leaderboard"
+        }
+
+        layout.addView(btnSmall)
+        layout.addView(btnMedium)
+        layout.addView(btnLarge)
         layout.addView(controlLayout)
+        layout.addView(btnLeaderboard)
 
         val dialog = AlertDialog.Builder(context)
             .setTitle(context.getString(R.string.select_game_mode))
@@ -82,6 +87,14 @@ object SizeSelect {
                     dialog.dismiss()
                 }
             }
+
+        btnLeaderboard.setOnClickListener {
+            if (context is AppCompatActivity) {
+                LeaderboardDialog.show(context as AppCompatActivity,0) {
+                    //showSizeSelectionDialog(context, onSizeSelected)
+                }
+            }
+        }
 
         dialog.show()
     }

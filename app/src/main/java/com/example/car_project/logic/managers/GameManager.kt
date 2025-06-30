@@ -10,6 +10,9 @@ class GameManager(private val lifeCount: Int = 5) {
     private var score: Int = 0
         private set
 
+    val currentScore: Int
+        get() = score
+
     private var coin: Int = 0
         private set
 

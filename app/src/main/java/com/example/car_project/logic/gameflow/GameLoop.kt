@@ -70,7 +70,7 @@ object GameLoop {
 
                 if (gameManager.isGameOver) {
                     pauseGameLoop()
-                    endGame.show(context)
+                    endGame.show(context,gameManager.currentScore)
                     // You can save score here or notify MainActivity
                     //return@launch
                 }

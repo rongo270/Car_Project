@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatButton
 
 object endGame {
 
-    fun show(context: Context) {
+    fun show(context: Context, gameScore:Int) {
         val layout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 40, 40, 40)
@@ -52,8 +52,8 @@ object endGame {
 
         btnLeaderboard.setOnClickListener {
             if (context is AppCompatActivity) {
-                LeaderboardDialog.show(context as AppCompatActivity) {
-                    show(context) // Reopen endGame dialog on close
+                LeaderboardDialog.show(context as AppCompatActivity,gameScore) {
+                    show(context,0) // Reopen endGame dialog on close
                 }
 
                 dialog.dismiss()
