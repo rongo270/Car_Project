@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/leaderboard_layout"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/leaderboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Scores"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/leaderboard_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:overScrollMode="ifContentScrolls"
+        android:contentDescription="Leaderboard list" />
+</LinearLayout>

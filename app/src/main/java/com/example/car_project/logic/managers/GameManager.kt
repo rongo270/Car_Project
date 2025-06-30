@@ -21,7 +21,7 @@ class GameManager(private val lifeCount: Int = 5) {
     private var coinPick: ((Int) -> Unit)? = null
         private set
 
-    private val isGameOver: Boolean
+     val isGameOver: Boolean
         get() = obstacleHit >= lifeCount
 
     //functions
@@ -59,12 +59,6 @@ class GameManager(private val lifeCount: Int = 5) {
             hearts[i].visibility = if (i < obstacleHit) View.INVISIBLE else View.VISIBLE
         }
 
-        if (isGameOver) {
-            resetLives(hearts)
-            for (heart in hearts) {
-                heart.visibility = View.VISIBLE
-            }
-        }
     }
 
     //_____________________________Coin Update_________________________________________________\\

@@ -15,6 +15,7 @@ import com.example.car_project.GameBoard
 import com.example.car_project.logic.levels.LevelThree
 import com.example.car_project.logic.levels.LevelTwo
 import com.example.car_project.sound.SoundEffectManager
+import com.example.car_project.ui.dialogs.endGame
 import kotlinx.coroutines.Job
 
 object GameLoop {
@@ -66,6 +67,13 @@ object GameLoop {
                             gameManager.updateHearts(mainHearts)
                         }
                     }
+
+                if (gameManager.isGameOver) {
+                    pauseGameLoop()
+                    endGame.show(context)
+                    // You can save score here or notify MainActivity
+                    //return@launch
+                }
 
 
                     if (tick % 2 == 0) {

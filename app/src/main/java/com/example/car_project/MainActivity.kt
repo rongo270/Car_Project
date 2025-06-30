@@ -68,7 +68,9 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
         //create player
         player = Player()
 
-        //build and start board
+
+
+    //build and start board
         val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
         val config = BoardConfig.from(selectedSize)
         gameBoard = GameBoard(this, boardLayout,config)
@@ -82,7 +84,7 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
         soundEffect = SoundEffectManager()
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-
+    
         if(!useArrows){
             mainLeft.visibility = View.GONE
             mainRight.visibility = View.GONE

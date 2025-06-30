@@ -58,6 +58,7 @@ object GameUIManager {
             }
         }
 
+
 //___________________________________ TILT MOVEMENT ____________________________________________\\
         if(tilt) {
             val accelerometer = sensorManger.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
