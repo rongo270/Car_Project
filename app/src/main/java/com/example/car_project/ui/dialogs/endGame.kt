@@ -7,10 +7,12 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.example.car_project.logic.helpers.ScoreEntry
+import com.example.car_project.logic.helpers.ScoreStorage
 
 object endGame {
 
-    fun show(context: Context, gameScore:Int) {
+    fun show(context: Context, gameScore: Int) {
         val layout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 40, 40, 40)
@@ -52,13 +54,12 @@ object endGame {
 
         btnLeaderboard.setOnClickListener {
             if (context is AppCompatActivity) {
-                LeaderboardDialog.show(context as AppCompatActivity,gameScore) {
-                    show(context,0) // Reopen endGame dialog on close
-                }
-
+                // Optional: save score before showing screen
+                ScoreStorage.addScore(context, ScoreEntry("Player", gameScore, 32.0853, 34.7818))
+                context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
                 dialog.dismiss()
             }
         }
-            dialog.show()
+        dialog.show()
     }
 }

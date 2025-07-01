@@ -8,12 +8,23 @@
     import com.example.car_project.R
     import com.example.car_project.logic.helpers.ScoreEntry
 
-    class ScoreAdapter(private val scores: List<ScoreEntry>) :
-        RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder>() {
+    class ScoreAdapter(
+        private val scores: List<ScoreEntry>,
+        private val onClick: (ScoreEntry) -> Unit
+    ) : RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder>() {
 
-        class ScoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        inner class ScoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val name: TextView = view.findViewById(R.id.score_name)
             val score: TextView = view.findViewById(R.id.score_value)
+
+            init {
+                view.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onClick(scores[position])
+                    }
+                }
+            }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreViewHolder {

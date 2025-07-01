@@ -1,6 +1,7 @@
 package com.example.car_project.ui.dialogs
 
 import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -19,7 +20,7 @@ object LeaderboardDialog {
 
         val recycler = layout.findViewById<RecyclerView>(R.id.leaderboard_recycler)
         recycler.layoutManager = LinearLayoutManager(activity)
-        recycler.adapter = ScoreAdapter(ScoreStorage.loadScores(activity))
+        recycler.adapter = ScoreAdapter(ScoreStorage.loadScores(activity)) { /* do nothing */ }
 
         val alertDialog = AlertDialog.Builder(activity)
             .setView(layout)
@@ -31,6 +32,7 @@ object LeaderboardDialog {
 
         // If game has ended, allow adding a new score
         if (gameScore!=0) {
+            ScoreStorage.addScore(activity, ScoreEntry("Tester", 123, 32.0853, 34.7818)) // Tel Aviv
             val nameInput = EditText(activity).apply {
                 hint = "Enter your name"
             }
@@ -40,8 +42,13 @@ object LeaderboardDialog {
                 setOnClickListener {
                     val name = nameInput.text.toString().ifBlank { "Player" }
                     val score = gameScore // Replace with actual game score
-                    ScoreStorage.addScore(activity, ScoreEntry(name, score))
-                    recycler.adapter = ScoreAdapter(ScoreStorage.loadScores(activity))
+                    //ScoreStorage.addScore(activity, ScoreEntry(name, score))
+                    ScoreStorage.addScore(activity, ScoreEntry(name, score,0.0,0.0))
+                    //recycler.adapter = ScoreAdapter(ScoreStorage.loadScores(activity))
+                    recycler.adapter = ScoreAdapter(
+                        ScoreStorage.loadScores(activity)
+                    ) { score -> Log.d("ScoreClick", score.toString()) }
+
                     layoutContainer?.removeView(this)
                     layoutContainer?.removeView(nameInput)
                 }
