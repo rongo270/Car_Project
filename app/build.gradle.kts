@@ -15,6 +15,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val apiKey: String = project.findProperty("MAPS_API_KEY") as? String
+            ?: throw GradleException("MAPS_API_KEY not found in local.properties")
+        resValue("string", "google_maps_key", apiKey)
     }
 
     buildTypes {
