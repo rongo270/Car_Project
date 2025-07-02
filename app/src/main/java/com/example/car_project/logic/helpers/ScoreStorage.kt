@@ -26,4 +26,9 @@ object ScoreStorage {
         val type = object : TypeToken<List<ScoreEntry>>() {}.type
         return Gson().fromJson(json, type)
     }
+
+    fun clearScores(context: Context) {
+        val prefs = context.getSharedPreferences("scores_pref", Context.MODE_PRIVATE)
+        prefs.edit().remove(PREF_KEY).apply()
+    }
 }

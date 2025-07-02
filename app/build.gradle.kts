@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -13,11 +14,14 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey: String = project.findProperty("MAPS_API_KEY") as? String
-            ?: throw GradleException("MAPS_API_KEY not found in local.properties")
+        val props = Properties()
+        val localFile = rootProject.file("local.properties")
+        if (localFile.exists()) {
+            localFile.inputStream().use { props.load(it) }
+        }
+        val apiKey = props.getProperty("MAPS_API_KEY") ?: "MISSING_KEY"
         resValue("string", "google_maps_key", apiKey)
     }
 
@@ -30,6 +34,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -39,6 +44,8 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -46,9 +53,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.maps)
+    implementation(libs.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.gson)
-
 }

@@ -12,18 +12,27 @@ class LeaderboardScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LeaderboardScreenActivity", "onCreate started")
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_leaderboard_screen)
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_map)
+        (fragment as? LeaderboardMapFragment)?.mapView?.onCreate(savedInstanceState)
 
-        mapFragment = LeaderboardMapFragment()
-
+        // First, add the map fragment
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_scores, LeaderboardListFragment { lat, lng ->
-                mapFragment.updateLocation(lat, lng)
-            })
+            .replace(R.id.fragment_map, LeaderboardMapFragment())
             .commit()
 
+        // Then, add the score list with click handler that finds the real map fragment
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_map, mapFragment)
+            .replace(R.id.fragment_scores, LeaderboardListFragment { lat, lng ->
+                val fragment = supportFragmentManager.findFragmentById(R.id.fragment_map)
+                if (fragment is LeaderboardMapFragment) {
+                    fragment.updateLocation(lat, lng)
+                } else {
+                    Log.d("LeaderboardScreenActivity", "Map fragment not found or wrong type")
+                }
+            })
             .commit()
     }
 }
+

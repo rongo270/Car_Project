@@ -54,8 +54,8 @@ object endGame {
 
         btnLeaderboard.setOnClickListener {
             if (context is AppCompatActivity) {
-                // Optional: save score before showing screen
                 ScoreStorage.addScore(context, ScoreEntry("Player", gameScore, 32.0853, 34.7818))
+                //ScoreStorage.clearScores(context)
                 context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
                 dialog.dismiss()
             }

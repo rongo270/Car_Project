@@ -2,6 +2,8 @@ package com.example.car_project.ui.dialogs
 
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.Gravity
 import android.widget.CheckBox
 import android.widget.LinearLayout
@@ -9,10 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.car_project.R
+import com.example.car_project.logic.helpers.ScoreEntry
+import com.example.car_project.logic.helpers.ScoreStorage
 import com.example.car_project.utilities.gameSize.GameSize
 import com.example.car_project.utilities.gameSize.Large
 import com.example.car_project.utilities.gameSize.Medium
 import com.example.car_project.utilities.gameSize.Small
+import java.io.File
 
 
 object SizeSelect {
@@ -89,12 +94,17 @@ object SizeSelect {
             }
 
         btnLeaderboard.setOnClickListener {
+            Log.d("SizeSelect", "Leaderboard button clicked")
             if (context is AppCompatActivity) {
-                LeaderboardDialog.show(context as AppCompatActivity,0) {
-                    //showSizeSelectionDialog(context, onSizeSelected)
-                }
+                Log.d("SizeSelect", "Clearing scores and adding a test score")
+                ScoreStorage.clearScores(context)
+                ScoreStorage.addScore(context, ScoreEntry("Player", 2, 32.0853, 34.7818))
+                Log.d("SizeSelect", "Starting LeaderboardScreenActivity")
+                context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
             }
         }
+
+
 
         dialog.show()
     }

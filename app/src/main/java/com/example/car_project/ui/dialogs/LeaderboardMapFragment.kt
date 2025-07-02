@@ -1,5 +1,6 @@
 package com.example.car_project.ui.dialogs
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,39 +14,65 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.car_project.R
 
 
-class LeaderboardMapFragment : Fragment(), OnMapReadyCallback {
-    private lateinit var map: GoogleMap
-    private var mapView: MapView? = null
+    class LeaderboardMapFragment : Fragment(), OnMapReadyCallback {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val view = inflater.inflate(R.layout.fragment_leaderboard_map, container, false)
-        mapView = view.findViewById(R.id.map_view)
-        mapView?.onCreate(savedInstanceState)
-        mapView?.getMapAsync(this)
-        return view
-    }
+        private lateinit var map: GoogleMap
+        var mapView: MapView? = null
 
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            val view = inflater.inflate(R.layout.fragment_leaderboard_map, container, false)
+            mapView = view.findViewById(R.id.map_view)
+            mapView?.onCreate(savedInstanceState)
+            mapView?.getMapAsync(this)
+            return view
+        }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-    }
+        override fun onMapReady(googleMap: GoogleMap) {
+            Log.d("LeaderboardMapFragment", "onMapReady called")
+            map = googleMap
+            val defaultLocation = LatLng(32.0853, 34.7818)
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
+        }
 
-    fun updateLocation(lat: Double, lng: Double) {
-        if (::map.isInitialized) {
-            val location = LatLng(lat, lng)
-            map.clear()
-            map.addMarker(MarkerOptions().position(location).title("Score Location"))
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+        fun updateLocation(lat: Double, lng: Double) {
+            Log.d("LeaderboardMapFragment", "updateLocation called with: $lat, $lng")
+            if (::map.isInitialized) {
+                val location = LatLng(lat, lng)
+                map.clear()
+                map.addMarker(MarkerOptions().position(location).title("Score Location"))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+            } else {
+                Log.d("LeaderboardMapFragment", "Map is NOT initialized yet")
+            }
+        }
+
+        // 🔁 Add all lifecycle methods
+        override fun onResume() {
+            super.onResume()
+            mapView?.onResume()
+        }
+
+        override fun onPause() {
+            mapView?.onPause()
+            super.onPause()
+        }
+
+        override fun onDestroy() {
+            mapView?.onDestroy()
+            super.onDestroy()
+        }
+
+        override fun onLowMemory() {
+            super.onLowMemory()
+            mapView?.onLowMemory()
+        }
+
+        override fun onSaveInstanceState(outState: Bundle) {
+            super.onSaveInstanceState(outState)
+            mapView?.onSaveInstanceState(outState)
         }
     }
-
-    // Lifecycle delegation to mapView
-    override fun onResume() { super.onResume(); mapView?.onResume() }
-    override fun onPause() { super.onPause(); mapView?.onPause() }
-    override fun onDestroy() { super.onDestroy(); mapView?.onDestroy() }
-    override fun onLowMemory() { super.onLowMemory(); mapView?.onLowMemory() }
-}
