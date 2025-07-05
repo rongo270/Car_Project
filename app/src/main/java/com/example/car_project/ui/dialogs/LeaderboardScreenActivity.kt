@@ -10,29 +10,28 @@ class LeaderboardScreenActivity : AppCompatActivity() {
     private lateinit var mapFragment: LeaderboardMapFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("LeaderboardScreenActivity", "onCreate started")
         super.onCreate(savedInstanceState)
-
+        Log.d("LeaderboardScreenActivity", "onCreate started")
         setContentView(R.layout.activity_leaderboard_screen)
-        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_map)
-        (fragment as? LeaderboardMapFragment)?.mapView?.onCreate(savedInstanceState)
 
-        // First, add the map fragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_map, LeaderboardMapFragment())
-            .commit()
+        mapFragment = LeaderboardMapFragment()
 
-        // Then, add the score list with click handler that finds the real map fragment
+        // Load leaderboard list with callback to update map
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_scores, LeaderboardListFragment { lat, lng ->
-                val fragment = supportFragmentManager.findFragmentById(R.id.fragment_map)
-                if (fragment is LeaderboardMapFragment) {
-                    fragment.updateLocation(lat, lng)
-                } else {
-                    Log.d("LeaderboardScreenActivity", "Map fragment not found or wrong type")
-                }
+                mapFragment.updateLocation(lat, lng)
             })
             .commit()
-    }
-}
 
+        // Load map fragment initially (keeps it loaded)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_map, mapFragment)
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()  // Call the parent method
+        finish()               // Then close the activity
+    }
+
+}

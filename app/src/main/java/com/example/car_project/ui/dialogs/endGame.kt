@@ -12,7 +12,8 @@ import com.example.car_project.logic.helpers.ScoreStorage
 
 object endGame {
 
-    fun show(context: Context, gameScore: Int) {
+    fun show(context: Context, gameScore: Int, qualifies: Boolean, user: ScoreEntry?)
+    {
         val layout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(40, 40, 40, 40)
@@ -54,7 +55,7 @@ object endGame {
 
         btnLeaderboard.setOnClickListener {
             if (context is AppCompatActivity) {
-                ScoreStorage.addScore(context, ScoreEntry("Player", gameScore, 32.0853, 34.7818))
+                //ScoreStorage.addScore(context, ScoreEntry("Player", gameScore, 32.0853, 34.7818))
                 //ScoreStorage.clearScores(context)
                 context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
                 dialog.dismiss()

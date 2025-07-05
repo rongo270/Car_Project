@@ -31,4 +31,10 @@ object ScoreStorage {
         val prefs = context.getSharedPreferences("scores_pref", Context.MODE_PRIVATE)
         prefs.edit().remove(PREF_KEY).apply()
     }
+
+    fun qualifiesForTop10(context: Context, score: Int): Boolean {
+        val scores = loadScores(context)
+        return scores.size < 10 || score > scores.minOf { it.score }
+    }
+
 }

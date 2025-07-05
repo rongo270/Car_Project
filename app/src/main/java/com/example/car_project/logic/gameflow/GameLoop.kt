@@ -12,10 +12,12 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.GameBoard
+import com.example.car_project.logic.helpers.ScoreStorage
 import com.example.car_project.logic.levels.LevelThree
 import com.example.car_project.logic.levels.LevelTwo
 import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.ui.dialogs.endGame
+import com.example.car_project.ui.dialogs.getName
 import kotlinx.coroutines.Job
 
 object GameLoop {
@@ -25,6 +27,9 @@ object GameLoop {
     private var gameJob: Job? = null
 
     private var isPaused = false
+
+    private var scoreHandled = false
+
 
     fun startGameLoop(
         lifecycleScope: LifecycleCoroutineScope,
@@ -41,13 +46,17 @@ object GameLoop {
             var tick = 0
 
             while (true) {
-                if (isPaused) {
-                    delay(100)
-                    continue
+                    if (isPaused) {
+                        delay(100)
+                        continue
+                    }
+
+                if(scoreHandled){
+                    pauseGameLoop()
+                    endGame.show(context,0,false,null)
                 }
 
-
-                tick++
+                    tick++
 
                     gameManager.updateScore(Constants.POINT_FOR_SECOND)
 
@@ -68,12 +77,22 @@ object GameLoop {
                         }
                     }
 
-                if (gameManager.isGameOver) {
-                    pauseGameLoop()
-                    endGame.show(context,gameManager.currentScore)
-                    // You can save score here or notify MainActivity
-                    //return@launch
-                }
+
+                    if (gameManager.isGameOver && !scoreHandled) {
+                        scoreHandled = true
+                        //ScoreStorage.clearScores(context)
+                        pauseGameLoop()
+                        val qualifies =
+                            ScoreStorage.qualifiesForTop10(context, gameManager.currentScore)
+                        if (qualifies) {
+                            getName.show(context, gameManager.currentScore) { entry ->
+                                ScoreStorage.addScore(context, entry)
+                                endGame.show(context, gameManager.currentScore, true, entry)
+                            }
+                        } else {
+                            endGame.show(context, gameManager.currentScore, false, null)
+                        }
+                    }
 
 
                     if (tick % 2 == 0) {
@@ -98,7 +117,7 @@ object GameLoop {
                     speed = adjustSpeed(speed, tick)
                 }
             }
-        }
+    }
         fun pauseGameLoop() {
             isPaused = true
         }
