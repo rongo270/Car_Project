@@ -1,6 +1,6 @@
-package com.example.car_project.logic.helpers
+package com.example.car_project.logic.helpers.Speed
 
-import com.example.car_project.utilities.Constants
+import com.example.car_project.utilities.Constants.Constants
 
 object SpeedChanger {
     fun adjustSpeed(currentSpeed: Long, tick: Int):Long{

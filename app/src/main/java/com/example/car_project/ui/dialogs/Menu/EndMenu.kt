@@ -1,4 +1,4 @@
-package com.example.car_project.ui.dialogs
+package com.example.car_project.ui.dialogs.Menu
 
 import android.content.Context
 import android.app.AlertDialog
@@ -7,10 +7,10 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.example.car_project.logic.helpers.ScoreEntry
-import com.example.car_project.logic.helpers.ScoreStorage
+import com.example.car_project.logic.helpers.Score.ScoreEntry
+import com.example.car_project.ui.dialogs.LeaderboardScreenActivity
 
-object endGame {
+object EndMenu {
 
     fun show(context: Context, gameScore: Int, qualifies: Boolean, user: ScoreEntry?)
     {

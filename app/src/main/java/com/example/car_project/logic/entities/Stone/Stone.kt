@@ -1,9 +1,10 @@
-package com.example.car_project.logic.entities
+package com.example.car_project.logic.entities.Stone
 
 import android.content.Context
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.car_project.R
+import com.example.car_project.logic.entities.Player.Player
 import com.example.car_project.logic.managers.GameManager
 
 class Stone(var row: Int, var col: Int, stoneLevel:Int, var isCoin:Boolean = false) {
@@ -26,11 +27,11 @@ class Stone(var row: Int, var col: Int, stoneLevel:Int, var isCoin:Boolean = fal
         )
     }
 
-    private fun moveDown(board: Array<Array<ImageView>>, context: Context): Boolean {//move stone down
+    private fun moveDown(board: Array<Array<ImageView>>, context: Context): Boolean {//move stones down
         clear(board)//clear image
         row++
         return if (row < board.size) {
-            drawStone(board, context)//draw image
+            drawStone(board, context)//draw stone
             true
         } else {
             false // reached bottom

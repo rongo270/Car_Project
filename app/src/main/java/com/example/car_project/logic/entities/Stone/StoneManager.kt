@@ -1,10 +1,10 @@
-package com.example.car_project.logic.managers
+package com.example.car_project.logic.entities.Stone
 
 import android.content.Context
 import android.widget.ImageView
-import com.example.car_project.logic.entities.Player
-import com.example.car_project.logic.entities.Stone
-import com.example.car_project.utilities.Constants
+import com.example.car_project.logic.entities.Player.Player
+import com.example.car_project.logic.managers.GameManager
+import com.example.car_project.utilities.Constants.Constants
 
 object StoneManager {
     private val stones = mutableListOf<Stone>()
@@ -15,7 +15,7 @@ object StoneManager {
         val col = (0 until cols).random()
         val roll = (1..100).random()
         val isCoin = roll <= Constants.COIN_CHANCE
-        val stone = Stone(0, col,currentLevel,isCoin)
+        val stone = Stone(0, col, currentLevel,isCoin)
         stones.add(stone)
         stone.drawStone(board, context)
     }

@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
-import com.example.car_project.logic.entities.Player
+import com.example.car_project.logic.entities.Player.Player
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.sound.SoundEffectManager
 import com.google.android.material.textview.MaterialTextView
@@ -16,17 +16,17 @@ object GameUIManager {
 
 
      fun initViews(
-        context: Context,
-        gameManager: GameManager,
-        mainLeft: AppCompatImageButton,
-        mainRight: AppCompatImageButton,
-        mainHearts: Array<AppCompatImageView>,
-        soundEffect: SoundEffectManager,
-        mainScore: MaterialTextView,
-        mainCoin: MaterialTextView,
-        player: Player,
-        sensorManger: SensorManager,
-        tilt:Boolean
+         context: Context,
+         gameManager: GameManager,
+         mainLeft: AppCompatImageButton,
+         mainRight: AppCompatImageButton,
+         mainHearts: Array<AppCompatImageView>,
+         soundEffect: SoundEffectManager,
+         mainScore: MaterialTextView,
+         mainCoin: MaterialTextView,
+         player: Player,
+         sensorManger: SensorManager,
+         tilt:Boolean
     )
      {
 //__________________________________LEFT AND RIGHT___________________________________________\\

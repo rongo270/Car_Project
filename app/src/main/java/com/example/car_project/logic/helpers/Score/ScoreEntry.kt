@@ -1,4 +1,4 @@
-package com.example.car_project.logic.helpers
+package com.example.car_project.logic.helpers.Score
 
 data class ScoreEntry(
     val name: String,

@@ -6,7 +6,7 @@
     import android.widget.TextView
     import androidx.recyclerview.widget.RecyclerView
     import com.example.car_project.R
-    import com.example.car_project.logic.helpers.ScoreEntry
+    import com.example.car_project.logic.helpers.Score.ScoreEntry
 
     class ScoreAdapter(
         private val scores: List<ScoreEntry>,

@@ -2,8 +2,8 @@ package com.example.car_project.logic.managers
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
-import com.example.car_project.logic.entities.Player
-import com.example.car_project.logic.entities.Stone
+import com.example.car_project.logic.entities.Player.Player
+import com.example.car_project.logic.entities.Stone.Stone
 
 class GameManager(private val lifeCount: Int = 5) {
 
@@ -27,7 +27,7 @@ class GameManager(private val lifeCount: Int = 5) {
      val isGameOver: Boolean
         get() = obstacleHit >= lifeCount
 
-    //functions
+    //Functions
     //___________________________________________________________________________________________\\
 
 
@@ -42,10 +42,8 @@ class GameManager(private val lifeCount: Int = 5) {
     }
 
     //________________________________HIT dealer___________________________________________________\\
-    fun checkIfHit(wasHit: Boolean) {
-        if (wasHit) {
+    fun stoneHit() {
             obstacleHit++
-        }
     }
 
     fun didCollide(stone: Stone, player: Player): Boolean {
@@ -55,7 +53,6 @@ class GameManager(private val lifeCount: Int = 5) {
 
 
     //___________________________HEART CHANGER______________________________________________________\\
-
 
     fun updateHearts(hearts: Array<AppCompatImageView>) {
         for (i in hearts.indices) {
@@ -83,7 +80,7 @@ class GameManager(private val lifeCount: Int = 5) {
 
     //______________________________Game-Over___________________________________________________\\
      fun resetLives(hearts: Array<AppCompatImageView>) {
-        hearts[0].visibility = View.INVISIBLE
+        hearts[0].visibility = View.INVISIBLE //Hearts 0-1 are armor
         hearts[1].visibility = View.INVISIBLE
         obstacleHit = 2
     }

@@ -1,34 +1,34 @@
 package com.example.car_project.logic.gameflow
 
 import androidx.lifecycle.LifecycleCoroutineScope
-import com.example.car_project.logic.entities.Player
-import com.example.car_project.logic.helpers.SpeedChanger.adjustSpeed
+import com.example.car_project.logic.entities.Player.Player
+import com.example.car_project.logic.helpers.Speed.SpeedChanger.adjustSpeed
 import com.example.car_project.logic.managers.GameManager
-import com.example.car_project.logic.managers.StoneManager
-import com.example.car_project.utilities.Constants
+import com.example.car_project.logic.entities.Stone.StoneManager
+import com.example.car_project.utilities.Constants.Constants
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.GameBoard
-import com.example.car_project.logic.helpers.ScoreStorage
-import com.example.car_project.logic.levels.LevelThree
-import com.example.car_project.logic.levels.LevelTwo
+import com.example.car_project.logic.helpers.Score.ScoreStorage
+import com.example.car_project.logic.helpers.levels.LevelThree
+import com.example.car_project.logic.helpers.levels.LevelTwo
 import com.example.car_project.sound.SoundEffectManager
-import com.example.car_project.ui.dialogs.endGame
-import com.example.car_project.ui.dialogs.getName
+import com.example.car_project.ui.dialogs.Menu.EndMenu
+import com.example.car_project.ui.dialogs.NewUser
 import kotlinx.coroutines.Job
 
 object GameLoop {
 
-    private var speed = 800L
+    private var speed = 800L //Start speed
 
-    private var gameJob: Job? = null
+    private var gameJob: Job? = null //Pause and Resume handled
 
     private var isPaused = false
 
-    private var scoreHandled = false
+    private var scoreHandled = false //Check if game already ends
 
 
     fun startGameLoop(
@@ -53,14 +53,14 @@ object GameLoop {
 
                 if(scoreHandled){
                     pauseGameLoop()
-                    endGame.show(context,0,false,null)
+                    EndMenu.show(context,0,false,null)
                 }
 
                     tick++
 
                     gameManager.updateScore(Constants.POINT_FOR_SECOND)
 
-                    StoneManager.moveAll(
+                    StoneManager.moveAll(//Moves all stones down and return if hit was made
                         board = gameBoard.getBoard(),
                         context = context,
                         player = player,
@@ -68,7 +68,7 @@ object GameLoop {
                     )
                     { isCoin ->
                         if (!isCoin) {
-                            gameManager.checkIfHit(true)
+                            gameManager.stoneHit()
                             gameManager.updateHearts(mainHearts)
                             player.fade()
                         } else {
@@ -78,19 +78,19 @@ object GameLoop {
                     }
 
 
-                    if (gameManager.isGameOver && !scoreHandled) {
+                    if (gameManager.isGameOver && !scoreHandled) {//if game over
                         scoreHandled = true
-                        //ScoreStorage.clearScores(context)
+                        //ScoreStorage.clearScores(context) Reset all Scores
                         pauseGameLoop()
-                        val qualifies =
+                        val qualifies = //Check if top 10
                             ScoreStorage.qualifiesForTop10(context, gameManager.currentScore)
-                        if (qualifies) {
-                            getName.show(context, gameManager.currentScore) { entry ->
+                        if (qualifies) { //If top 10 ask name and map
+                            NewUser.show(context, gameManager.currentScore) { entry ->
                                 ScoreStorage.addScore(context, entry)
-                                endGame.show(context, gameManager.currentScore, true, entry)
+                                EndMenu.show(context, gameManager.currentScore, true, entry)
                             }
                         } else {
-                            endGame.show(context, gameManager.currentScore, false, null)
+                            EndMenu.show(context, gameManager.currentScore, false, null)
                         }
                     }
 
@@ -103,14 +103,14 @@ object GameLoop {
                         )
                     }
 
-                    if (tick == Constants.LEVEL_TWO) {//Levels check, may need change for better complexities
+                    if (tick == Constants.LEVEL_TWO) {
                         LevelTwo.toLevelTwo(context, layout, soundEffect)
                     }
                     if (tick == Constants.LEVEL_THREE) {
                         LevelThree.toLevelThree(context, layout, soundEffect)
                     }
 
-                    player.draw()//needed
+                    player.draw()//Needed
 
                     delay(speed)
 

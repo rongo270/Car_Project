@@ -6,13 +6,13 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
-import com.example.car_project.logic.helpers.ScoreEntry
+import com.example.car_project.logic.helpers.Score.ScoreEntry
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-object getName {
+object NewUser {
 
     fun show(context: Context, score: Int, callback: (ScoreEntry) -> Unit) {
         val layout = LinearLayout(context).apply {

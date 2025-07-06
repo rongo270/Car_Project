@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.car_project.R
-import com.example.car_project.logic.helpers.ScoreEntry
-import com.example.car_project.logic.helpers.ScoreStorage
+import com.example.car_project.logic.helpers.Score.ScoreEntry
+import com.example.car_project.logic.helpers.Score.ScoreStorage
 import com.example.car_project.ui.adapters.ScoreAdapter
 
 object LeaderboardDialog {

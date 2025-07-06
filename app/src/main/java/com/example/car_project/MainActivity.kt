@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.car_project.logic.managers.GameManager
-import com.example.car_project.logic.entities.Player
+import com.example.car_project.logic.entities.Player.Player
 import com.google.android.material.textview.MaterialTextView
 import androidx.lifecycle.lifecycleScope
 import com.example.car_project.logic.gameflow.GameLoop
 import com.example.car_project.logic.gameflow.GameUIManager
 import com.example.car_project.sound.MusicManager
 import com.example.car_project.sound.SoundEffectManager
-import com.example.car_project.ui.dialogs.SizeSelect
+import com.example.car_project.ui.dialogs.Menu.StartMenu
 import com.example.car_project.utilities.gameSize.BoardConfig
 import com.example.car_project.utilities.gameSize.GameSize
 
@@ -55,10 +55,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         findViews()
-        musicManager = MusicManager()
+
+        musicManager = MusicManager()// Start music
         musicManager.startMusic(this)
 
-        SizeSelect.showSizeSelectionDialog(this) { selectedSize, useTilt, useArrows ->
+        StartMenu.startUI(this) { selectedSize, useTilt, useArrows ->
             setupGame(selectedSize, useTilt, useArrows)
         }
 
@@ -84,12 +85,13 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
         soundEffect = SoundEffectManager()
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-    
+
+        //If Arrows was not selected
         if(!useArrows){
             mainLeft.visibility = View.GONE
             mainRight.visibility = View.GONE
         }
-        //game flow
+        //Game flow
         GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,mainCoin,player,sensorManager,useTilt)
 
         val rootLayout = findViewById<View>(R.id.main)
@@ -110,6 +112,8 @@ private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boole
             findViewById(R.id.main_IMG_heart3)
             )
     }
+
+
     override fun onPause() {
         super.onPause()
         GameLoop.pauseGameLoop()

@@ -1,4 +1,4 @@
-package com.example.car_project.utilities
+package com.example.car_project.utilities.Constants
 
 object Constants {
     const val POINT_FOR_SECOND = 1

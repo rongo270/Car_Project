@@ -1,4 +1,4 @@
-package com.example.car_project.ui.dialogs
+package com.example.car_project.ui.dialogs.Menu
 
 
 import android.content.Context
@@ -11,18 +11,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.car_project.R
-import com.example.car_project.logic.helpers.ScoreEntry
-import com.example.car_project.logic.helpers.ScoreStorage
+import com.example.car_project.logic.helpers.Score.ScoreEntry
+import com.example.car_project.logic.helpers.Score.ScoreStorage
+import com.example.car_project.ui.dialogs.LeaderboardScreenActivity
 import com.example.car_project.utilities.gameSize.GameSize
 import com.example.car_project.utilities.gameSize.Large
 import com.example.car_project.utilities.gameSize.Medium
 import com.example.car_project.utilities.gameSize.Small
-import java.io.File
 
 
-object SizeSelect {
+object StartMenu {
 
-    fun showSizeSelectionDialog(
+    fun startUI(
         context: Context,
         onSizeSelected: (GameSize, useTilt: Boolean, useArrows: Boolean) -> Unit
     ) {

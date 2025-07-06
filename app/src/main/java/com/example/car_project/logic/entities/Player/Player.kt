@@ -1,4 +1,4 @@
-package com.example.car_project.logic.entities
+package com.example.car_project.logic.entities.Player
 
 import android.content.Context
 import android.content.pm.PackageManager
@@ -10,7 +10,7 @@ import com.example.car_project.logic.managers.GameManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.Toast
-import com.example.car_project.logic.managers.StoneManager
+import com.example.car_project.logic.entities.Stone.StoneManager
 import com.example.car_project.sound.SoundEffectManager
 import android.Manifest
 import androidx.core.content.ContextCompat
@@ -43,16 +43,16 @@ class Player {
             //Check if theres a stone in the new location
             val hitStone = stones.any { it.row == row && it.col == newCol }
             val isCoin = stones.any() {it.row == row && it.col == newCol && it.isCoin}
-            clear()//Clear the player
+            clear()//Clear block
             col = newCol
             draw()//Draw the player in the now col
 
-            if (hitStone) { //If hit stone return to manager the hit was made
+            if (hitStone) { //If hit stone while moving! return to manager the hit was made and if coin or not
                 if(isCoin){
                     onHit(true)
                 }
                 else{
-                    gameManager.checkIfHit(true)
+                    gameManager.stoneHit()//change hearts
                     onHit(false)
                     fade()
                 }

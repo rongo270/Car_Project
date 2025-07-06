@@ -1,9 +1,9 @@
-package com.example.car_project.logic.levels
+package com.example.car_project.logic.helpers.levels
 
 import android.content.Context
 import android.view.View
 import com.example.car_project.R
-import com.example.car_project.logic.managers.StoneManager
+import com.example.car_project.logic.entities.Stone.StoneManager
 import com.example.car_project.sound.SoundEffectManager
 
 object LevelThree {

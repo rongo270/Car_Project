@@ -8,8 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.car_project.R
-import com.example.car_project.logic.helpers.ScoreStorage
+import com.example.car_project.logic.helpers.Score.ScoreStorage
 
 class LeaderboardListFragment(
     private val onMapRequested: (Double, Double) -> Unit

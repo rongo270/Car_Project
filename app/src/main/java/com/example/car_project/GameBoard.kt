@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
-import com.example.car_project.logic.entities.Player
+import com.example.car_project.logic.entities.Player.Player
 import com.example.car_project.utilities.gameSize.BoardConfig
 
 class GameBoard(
