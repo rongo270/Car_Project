@@ -26,15 +26,18 @@ object NewUserUI {
             hint = "Enter your name"
         }
 
+        //Start to build a map and a Default place to look
         val mapView = MapView(context)
         mapView.onCreate(null)
         mapView.onResume()
 
-        var selectedLocation = LatLng(32.0853, 34.7818) // Default: Tel Aviv
+        var selectedLocation = LatLng(32.0853, 34.7818) //Default: Tel Aviv
 
+        //Load map to chose place
         mapView.getMapAsync { googleMap ->
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(selectedLocation, 10f))
 
+            //Gets map location coordinates
             googleMap.setOnMapClickListener { latLng ->
                 googleMap.clear()
                 googleMap.addMarker(MarkerOptions().position(latLng))
@@ -54,12 +57,14 @@ object NewUserUI {
         ))
         layout.addView(saveButton)
 
+        //Only show if top 10, check is not here
         val dialog = AlertDialog.Builder(context)
             .setTitle("Top 10! Enter Name & Location")
             .setView(layout)
             .setCancelable(false)
             .create()
 
+        //Build a user high score
         saveButton.setOnClickListener {
             val entry = ScoreEntry(
                 name = nameInput.text.toString().ifBlank { "Player" },

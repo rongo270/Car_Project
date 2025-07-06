@@ -31,9 +31,5 @@ class LeaderboardScreenActivity : AppCompatActivity() {
             .commit()
     }
 
-//    override fun onBackPressed() {
-//        super.onBackPressed()  // Call the parent method
-//        finish()               // Then close the activity
-//    }
 
 }

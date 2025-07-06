@@ -3,7 +3,6 @@ package com.example.car_project.ui.dialogs.Menu
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.Gravity
 import android.widget.CheckBox
 import android.widget.LinearLayout
@@ -11,8 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.car_project.R
-import com.example.car_project.logic.helpers.Score.ScoreEntry
-import com.example.car_project.logic.helpers.Score.ScoreStorage
 import com.example.car_project.logic.LeaderBoard.LeaderboardScreenActivity
 import com.example.car_project.utilities.gameSize.GameSize
 import com.example.car_project.utilities.gameSize.Large
@@ -67,7 +64,7 @@ object StartMenu {
         layout.addView(btnLeaderboard)
 
         val dialog = AlertDialog.Builder(context)
-            .setTitle(context.getString(R.string.select_game_mode))
+            .setTitle("Select Game Mode")
             .setView(layout)
             .setCancelable(false)
             .create()
@@ -94,12 +91,7 @@ object StartMenu {
             }
 
         btnLeaderboard.setOnClickListener {
-            Log.d("SizeSelect", "Leaderboard button clicked")
             if (context is AppCompatActivity) {
-                Log.d("SizeSelect", "Clearing scores and adding a test score")
-                ScoreStorage.clearScores(context)
-                ScoreStorage.addScore(context, ScoreEntry("Player", 2, 32.0853, 34.7818))
-                Log.d("SizeSelect", "Starting LeaderboardScreenActivity")
                 context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
             }
         }

@@ -47,19 +47,18 @@ object EndMenu {
             val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
             intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
-            Runtime.getRuntime().exit(0) // Force full app restart
+            Runtime.getRuntime().exit(0) //Force full app restart
         }
 
+        //End Game
         btnQuit.setOnClickListener {
             Runtime.getRuntime().exit(0)
         }
 
         btnLeaderboard.setOnClickListener {
             if (context is AppCompatActivity) {
-                //ScoreStorage.addScore(context, ScoreEntry("Player", gameScore, 32.0853, 34.7818))
-                //ScoreStorage.clearScores(context)
                 context.startActivity(Intent(context, LeaderboardScreenActivity::class.java))
-                dialog.dismiss()
+                //dialog.dismiss()
             }
         }
         dialog.show()

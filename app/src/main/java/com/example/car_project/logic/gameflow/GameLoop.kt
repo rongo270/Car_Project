@@ -80,7 +80,6 @@ object GameLoop {
 
                     if (gameManager.isGameOver && !scoreHandled) {//if game over
                         scoreHandled = true
-                        //ScoreStorage.clearScores(context) Reset all Scores
                         pauseGameLoop()
                         val qualifies = //Check if top 10
                             ScoreStorage.qualifiesForTop10(context, gameManager.currentScore)

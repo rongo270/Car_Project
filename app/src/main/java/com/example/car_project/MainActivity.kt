@@ -65,38 +65,38 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boolean) {
-        //create player
-        player = Player()
+private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boolean)
+{
+    // ScoreStorage.clearScores(this) Do if you want to resat leaderBoard
 
+    player = Player() //create player
 
+    //Build and start board
+    val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
+    val config = BoardConfig.from(selectedSize)
+    gameBoard = GameBoard(this, boardLayout,config)
+    gameBoard.initBoard(player)
 
-    //build and start board
-        val boardLayout = findViewById<GridLayout>(R.id.main_LAY_board)
-        val config = BoardConfig.from(selectedSize)
-        gameBoard = GameBoard(this, boardLayout,config)
-        gameBoard.initBoard(player)
+    //Give hearts
+    gameManager = GameManager(mainHearts.size)
+    gameManager.resetLives(mainHearts)
 
-        //give hearts
-        gameManager = GameManager(mainHearts.size)
-        gameManager.resetLives(mainHearts)
+    //Sound manage
+    soundEffect = SoundEffectManager()
 
-        //sound manage
-        soundEffect = SoundEffectManager()
+    sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-
-        //If Arrows was not selected
-        if(!useArrows){
-            mainLeft.visibility = View.GONE
-            mainRight.visibility = View.GONE
-        }
-        //Game flow
-        GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,mainCoin,player,sensorManager,useTilt)
-
-        val rootLayout = findViewById<View>(R.id.main)
-        GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
+    //If Arrows was not selected
+    if(!useArrows){
+        mainLeft.visibility = View.GONE
+        mainRight.visibility = View.GONE
     }
+    //Game flow
+    GameUIManager.initViews(this,gameManager,mainLeft,mainRight, mainHearts,soundEffect,mainScore,mainCoin,player,sensorManager,useTilt)
+
+    val rootLayout = findViewById<View>(R.id.main)
+    GameLoop.startGameLoop(lifecycleScope = lifecycleScope, this,player,gameBoard,gameManager,mainHearts,rootLayout,soundEffect)
+}
 
 
     private fun findViews() {

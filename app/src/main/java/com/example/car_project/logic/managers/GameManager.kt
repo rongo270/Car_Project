@@ -18,7 +18,7 @@ class GameManager(private val lifeCount: Int = 5) {
 
     private var onScoreChanged: ((Int) -> Unit)? = null
 
-    private var obstacleHit: Int = 2
+    private var obstacleHit: Int = 2 //Start with -2 hearts (Armor)
         private set
 
     private var coinPick: ((Int) -> Unit)? = null
