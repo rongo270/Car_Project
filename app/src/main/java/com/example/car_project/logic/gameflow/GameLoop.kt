@@ -17,7 +17,7 @@ import com.example.car_project.logic.helpers.levels.LevelThree
 import com.example.car_project.logic.helpers.levels.LevelTwo
 import com.example.car_project.sound.SoundEffectManager
 import com.example.car_project.ui.dialogs.Menu.EndMenu
-import com.example.car_project.ui.dialogs.NewUser
+import com.example.car_project.ui.dialogs.AddUser.NewUserUI
 import kotlinx.coroutines.Job
 
 object GameLoop {
@@ -53,7 +53,7 @@ object GameLoop {
 
                 if(scoreHandled){
                     pauseGameLoop()
-                    EndMenu.show(context,0,false,null)
+                    EndMenu.show(context)
                 }
 
                     tick++
@@ -85,12 +85,12 @@ object GameLoop {
                         val qualifies = //Check if top 10
                             ScoreStorage.qualifiesForTop10(context, gameManager.currentScore)
                         if (qualifies) { //If top 10 ask name and map
-                            NewUser.show(context, gameManager.currentScore) { entry ->
+                            NewUserUI.show(context, gameManager.currentScore) { entry ->
                                 ScoreStorage.addScore(context, entry)
-                                EndMenu.show(context, gameManager.currentScore, true, entry)
+                                EndMenu.show(context)
                             }
                         } else {
-                            EndMenu.show(context, gameManager.currentScore, false, null)
+                            EndMenu.show(context)
                         }
                     }
 

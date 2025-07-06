@@ -12,5 +12,18 @@
     <string name="control_arrows">Arrows</string>
     <string name="select_game_mode">Select Game Mode</string>
 
+    <string name="score_entry_format">%1$s: %2$d</string>
+    <string name="show_map">Show Map</string>
+    <string name="new_game">New Game</string>
+    <string name="quit">Quit</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="save_button">Save</string>
+
+
+    <string name="score_format">🏆 %1$s</string>
+    <string name="coin_format">💎 %1$s</string>
+
+
+
 
 </resources>

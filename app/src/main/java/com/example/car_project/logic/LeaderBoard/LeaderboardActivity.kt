@@ -1,18 +1,20 @@
-package com.example.car_project.ui.dialogs
+package com.example.car_project.logic.LeaderBoard
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.car_project.R
+import com.example.car_project.logic.Fragments.LeaderboardListFragment
+import com.example.car_project.logic.Fragments.LeaderboardMapFragment
 
 class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard_screen)
 
-        // Create the map fragment once, so we can call updateLocation on it
+        //Create the Map Fragment
         val mapFragment = LeaderboardMapFragment()
 
-        // Pass a lambda to update the map when a score is selected
+        //Create the Leaderboard Fragment
         val listFragment = LeaderboardListFragment { lat, lng ->
             mapFragment.updateLocation(lat, lng)
         }

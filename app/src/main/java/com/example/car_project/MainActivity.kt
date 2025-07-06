@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boolean) { //i may move it to another object, you think its good?
+private fun setupGame(selectedSize: GameSize, useTilt: Boolean, useArrows: Boolean) {
         //create player
         player = Player()
 

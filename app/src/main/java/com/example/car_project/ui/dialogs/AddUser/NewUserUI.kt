@@ -1,4 +1,4 @@
-package com.example.car_project.ui.dialogs
+package com.example.car_project.ui.dialogs.AddUser
 
 import android.content.Context
 import android.view.Gravity
@@ -6,13 +6,14 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import com.example.car_project.R
 import com.example.car_project.logic.helpers.Score.ScoreEntry
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-object NewUser {
+object NewUserUI {
 
     fun show(context: Context, score: Int, callback: (ScoreEntry) -> Unit) {
         val layout = LinearLayout(context).apply {
@@ -42,7 +43,7 @@ object NewUser {
         }
 
         val saveButton = AppCompatButton(context).apply {
-            text = "Save"
+            text = context.getString(R.string.save_button)
         }
 
         // Add views to layout

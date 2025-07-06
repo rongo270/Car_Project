@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.example.car_project.R
 import com.example.car_project.logic.helpers.Score.ScoreEntry
 import com.example.car_project.logic.helpers.Score.ScoreStorage
-import com.example.car_project.ui.dialogs.LeaderboardScreenActivity
+import com.example.car_project.logic.LeaderBoard.LeaderboardScreenActivity
 import com.example.car_project.utilities.gameSize.GameSize
 import com.example.car_project.utilities.gameSize.Large
 import com.example.car_project.utilities.gameSize.Medium
@@ -57,7 +57,7 @@ object StartMenu {
         }
 
         val btnLeaderboard = AppCompatButton(context).apply {
-            text = "Leaderboard"
+            text = context.getString(R.string.leaderboard)
         }
 
         layout.addView(btnSmall)

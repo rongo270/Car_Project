@@ -17,7 +17,7 @@ object ScoreStorage {
     }
 
     //Save User details in JSON
-    fun saveScores(context: Context, scores: List<ScoreEntry>) {
+    private fun saveScores(context: Context, scores: List<ScoreEntry>) {
         val prefs = context.getSharedPreferences("scores_pref", Context.MODE_PRIVATE)
         val json = Gson().toJson(scores)
         prefs.edit { putString(PREF_KEY, json) }

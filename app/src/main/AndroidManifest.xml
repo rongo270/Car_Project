@@ -27,7 +27,7 @@
         </activity>
 
         <!-- ✅ Add this line -->
-        <activity android:name=".ui.dialogs.LeaderboardScreenActivity" />
+        <activity android:name=".logic.LeaderBoard.LeaderboardScreenActivity" />
 
     </application>
 

@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
+import com.example.car_project.R
 import com.example.car_project.logic.entities.Player.Player
 import com.example.car_project.logic.managers.GameManager
 import com.example.car_project.sound.SoundEffectManager
@@ -96,11 +97,11 @@ object GameUIManager {
 //___________________________________SCORE REFRESHER____________________________________________\\
         gameManager.setOnScoreChangedListener { updatedScore ->
            //mainScore.text = updatedScore.toString().padStart(3, '0')
-            mainScore.text = "\uD83C\uDFC6 ${updatedScore.toString().padStart(3, '0')}"
+            mainScore.text = context.getString(R.string.score_format, updatedScore.toString().padStart(3, '0'))
         }
 //___________________________________Coin REFRESHER______________________________________________\\
          gameManager.setOnCoinChangedListener { updatedCoin ->
-             mainCoin.text = "💎 ${updatedCoin.toString().padStart(3, '0')}"
+             mainCoin.text = context.getString(R.string.coin_format, updatedCoin.toString().padStart(3, '0'))
          }
     }
 }

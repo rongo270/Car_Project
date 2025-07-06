@@ -7,12 +7,12 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.example.car_project.logic.helpers.Score.ScoreEntry
-import com.example.car_project.ui.dialogs.LeaderboardScreenActivity
+import com.example.car_project.R
+import com.example.car_project.logic.LeaderBoard.LeaderboardScreenActivity
 
 object EndMenu {
 
-    fun show(context: Context, gameScore: Int, qualifies: Boolean, user: ScoreEntry?)
+    fun show(context: Context)
     {
         val layout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
@@ -21,16 +21,17 @@ object EndMenu {
         }
 
         val btnRestart = AppCompatButton(context).apply {
-            text = "New Game"
+            text = context.getString(R.string.new_game)
         }
 
         val btnQuit = AppCompatButton(context).apply {
-            text = "Quit"
+            text = context.getString(R.string.quit)
         }
 
         val btnLeaderboard = AppCompatButton(context).apply {
-            text = "Leaderboard"
+            text = context.getString(R.string.leaderboard)
         }
+
 
         layout.addView(btnLeaderboard)
         layout.addView(btnRestart)
