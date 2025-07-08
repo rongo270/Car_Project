@@ -6,7 +6,15 @@
 
 ## 📸 Screenshots
 
-> *(Add screenshots here to showcase gameplay, enemies, and leaderboard/map screens)*
+![Screenshot_20250708-122201_MineCarFt](https://github.com/user-attachments/assets/96fc6e11-524d-4e7a-99f6-4705584a8153)
+![Screenshot_20250708-123100_MineCarFt](https://github.com/user-attachments/assets/fd1a4344-f9de-482c-aa38-ddd5f71cdbd0)
+![Screenshot_20250708-123128_MineCarFt](https://github.com/user-attachments/assets/13963074-22d1-4320-b31c-53d2d4500254)
+![Screenshot_20250708-123350_MineCarFt](https://github.com/user-attachments/assets/3d86840d-565a-4a50-9b27-f18a2dacf98c)
+![Screenshot_20250708-123436_MineCarFt](https://github.com/user-attachments/assets/05a6ab9c-8eb5-4bf1-b72b-7c99425837e2)
+![Screenshot_20250708-123443_MineCarFt](https://github.com/user-attachments/assets/92a4f1e6-6101-4124-b29a-f9667b5e4ff0)
+![Screenshot_20250708-123418_MineCarFt](https://github.com/user-attachments/assets/f959779a-b459-4780-b074-afd40afb240f)
+
+
 
 ---
 
